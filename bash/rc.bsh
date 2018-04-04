@@ -1,0 +1,76 @@
+# .bashrc
+
+# uncomment to debug
+#set -x
+
+# expand aliases on non-interactive shell
+shopt -s expand_aliases
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
+
+# If not running interactively, skip the rest
+[ -z "$PS1" ] && return
+
+# if not a login shell, produce a warning
+[ "$(shopt login_shell | cut -f2)" == "off" ] && echo "Warning: not a login shell. configure your terminal!"
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	source /etc/bashrc
+fi
+
+# proper bash history, finally.
+# using .bash_logout to erase non-sequencial duplicates.
+# keeps track with multiple shells open !
+export HISTCONTROL=erasedups            # erase duplicate entries
+export HISTSIZE=100000                  # big history
+export HISTFILESIZE=100000              # big history
+export HISTIGNORE="&"                   # don't log repeated commands
+export PROMPT_COMMAND="history -a"      # append history to .bash_history after every command
+
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# FIRST add functions
+if [ -f ${WD}/functions.bsh ]; then
+    source ${WD}/functions.bsh
+fi
+
+# AND THEN aliases
+if [ -f ${WD}/aliases.bsh ]; then
+    source ${WD}/aliases.bsh
+fi
+
+# Load custom bash completions
+source ${WD}/_libs/maven-bash-completion/bash_completion.bash
+
+# Load custom scripts to ~/bin
+load-scripts
+
+# delete broken symlinks
+find $HOME/bin -xtype l -delete 2>/dev/null
+
+if [ -f `which powerline-daemon` ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  source /usr/share/powerline/bash/powerline.sh
+fi
+
+# Load bash-preexec
+if [ -f ${WD}/_libs/bash-preexec/bash-preexec.sh ]; then
+	source ${WD}/_libs/bash-preexec/bash-preexec.sh
+
+	# Add preexec functions
+	if [ -n "$TMUX" -a "$(type -t preexec_tmux_rename)" == "function" ]; then
+		preexec_functions+=(preexec_tmux_rename)
+	fi
+fi
+

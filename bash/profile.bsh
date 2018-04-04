@@ -1,0 +1,34 @@
+# .bash_profile
+
+if [ "$TERM" == "xterm" ]; then
+	if [ "$COLORTERM" == "gnome-terminal" ] || [ "$COLORTERM" == "xfce4-terminal" ]; then
+		TERM=xterm-256color
+	elif [ "$COLORTERM" == "rxvt-xpm" ]; then
+		TERM=rxvt-256color
+	fi
+elif [ "$TERM" == "urxvt" ]; then
+	TERM=rxvt-unicode
+fi
+
+export EDITOR='vim'
+export MAVEN_OPTS='-Xms256M -Xmx1536M -XX:PermSize=256M -XX:MaxPermSize=1536m'
+export IDEA_JDK="${HOME}/.sdkman/candidates/java/current"
+
+# Get the aliases and functions
+if [ -r ~/.bashrc ]; then
+	source ~/.bashrc
+fi
+
+if [ -d "$HOME/bin" ] ; then
+	export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d /opt/share/bin ]; then
+	export PATH="/opt/share/bin:$PATH"
+fi
+
+if [ -d "$HOME/.sdkman" ]; then
+	export SDKMAN_DIR="$HOME/.sdkman"
+	[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+

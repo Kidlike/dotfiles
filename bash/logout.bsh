@@ -1,0 +1,32 @@
+# ~/.bash_logout: executed by bash(1) when login shell exits.
+
+if [ -n ${TMUX} ]; then
+	tmux setw automatic-rename off
+fi
+
+HISTORY_DIR="${HOME}/.bash_history.d"
+
+if [ ! -x ${HISTORY_DIR} ]; then
+	mkdir ${HISTORY_DIR} 2>/dev/null
+	mkdir ${HISTORY_DIR}/backups 2>/dev/null
+	mkdir ${HISTORY_DIR}/currents 2>/dev/null
+
+	chmod u+wrx ${HISTORY_DIR} -R
+	chmod go-wrx ${HISTORY_DIR} -R
+fi
+
+history -a
+cat ~/.bash_history | nl | sort -k 2 | uniq -f 1 | sort -n | cut -f 2 > ${HISTORY_DIR}/bash_history.bkp
+chmod go-wrx ${HISTORY_DIR}/bash_history.bkp
+cp -f ${HISTORY_DIR}/bash_history.bkp ~/.bash_history
+
+next_number=$(\ls -1 ${HISTORY_DIR}/currents | wc -l)
+
+if [ ${next_number} -ge 100 ]; then
+	tar -czpf ${HISTORY_DIR}/backups/$(date +%Y%m%d-%k_%M_%S).tar.gz ${HISTORY_DIR}/currents/*
+	rm -f ${HISTORY_DIR}/currents/* 2>/dev/null
+fi
+
+next_number=$(\ls -1 ${HISTORY_DIR}/currents | wc -l)
+
+cp -pf ~/.bash_history ${HISTORY_DIR}/currents/${next_number}

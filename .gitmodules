@@ -1,0 +1,9 @@
+[submodule "_libs/dotbot"]
+	path = _libs/dotbot
+	url = https://github.com/anishathalye/dotbot
+[submodule "configs/bash/_libs/bash-preexec"]
+	path = configs/bash/_libs/bash-preexec
+	url = git@github-kidlike:rcaloras/bash-preexec.git
+[submodule "configs/bash/_libs/maven-bash-completion"]
+	path = configs/bash/_libs/maven-bash-completion
+	url = git@github-kidlike:juven/maven-bash-completion.git

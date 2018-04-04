@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function dnf-safe-install() {
+    if [ $(dnf info $1 | grep -c 'Installed') -eq 0 ]; then
+        sudo dnf install -y $1
+        sudo updatedb
+    fi
+}
+
+function pip-safe-install() {
+        pip show $1 >/dev/null 2>&1
+        if [ $? -ne 0 ]; then
+                sudo pip install $1
+        fi
+}
+
+function jq-inline() {
+	local jqScript=$1
+	local file=$2
+	jq "${jqScript}" "${file}" > "${file}.tmp"
+	mv "${file}.tmp" "${file}"
+}
+

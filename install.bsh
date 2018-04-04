@@ -1,0 +1,25 @@
+#!/bin/bash
+
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${WD}/../_utils.bsh"
+
+DOTBOT_DIR="_libs/dotbot"
+DOTBOT="bin/dotbot"
+CONFIG="install.conf.yaml"
+
+if [ -e "$HOME/.dotfiles" -a ! -L "$HOME/.dotfiles" ]; then
+	echo "'$HOME/.dotfiles' exists. Please backup and/or remove that folder as it's required for installation."
+	exit 1;
+fi
+
+PYTHON="python"
+[ $(which python2) ] && PYTHON="python2"
+
+pip-safe-install PyYaml
+
+rm -f "$HOME/.dotfiles"
+ln -sf "$WD" "$HOME/.dotfiles"
+
+export WD="${HOME}/.dotfiles"
+${PYTHON} "${WD}/${DOTBOT_DIR}/${DOTBOT}" --base-directory "${WD}" --config-file "${WD}/${CONFIG}" $@
+
