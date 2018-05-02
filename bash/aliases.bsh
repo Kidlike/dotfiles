@@ -25,13 +25,11 @@ alias intern-10-commands="echo \$PATH | tr ':' '\n' | xargs -I {} sh -c \"echo =
 alias rdesktop='rdesktop -p - -g 1600x900'
 
 # color_prompt is set from ~/.bashrc
-if [ "$color_prompt" == "yes" ]; then
-	alias ls='ls -hF --color=auto --group-directories-first'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias less='less -R'
-fi
+alias ls='ls -hF --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias less='less -R'
 
 # don't define these if there's no maven
 if command -v mvn >/dev/null 2>&1; then

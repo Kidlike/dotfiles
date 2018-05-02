@@ -1,6 +1,6 @@
 # ~/.bash_logout: executed by bash(1) when login shell exits.
 
-if [ -n ${TMUX} ]; then
+if [ -n "${TMUX}" ]; then
 	tmux setw automatic-rename off
 fi
 
@@ -30,3 +30,4 @@ fi
 next_number=$(\ls -1 ${HISTORY_DIR}/currents | wc -l)
 
 cp -pf ~/.bash_history ${HISTORY_DIR}/currents/${next_number}
+
