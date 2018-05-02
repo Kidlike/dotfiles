@@ -73,6 +73,10 @@ find $HOME/bin -xtype l -delete 2>/dev/null
 if [ -f ${WD}/_libs/bash-preexec/bash-preexec.sh ]; then
 	\. ${WD}/_libs/bash-preexec/bash-preexec.sh
 
+	if [ "$(type -t preexec_history)" == "function" ]; then
+		preexec_functions+=(preexec_history)
+	fi
+
 	# Add preexec functions
 	if [ -n "$TMUX" -a "$(type -t preexec_tmux_rename)" == "function" ]; then
 		preexec_functions+=(preexec_tmux_rename)

@@ -153,6 +153,10 @@ function free-swap() {
 #	}
 #fi
 
+preexec_history() {
+	history -a
+}
+
 preexec_tmux_rename() {
 	if [ -n $TMUX ]; then
 		local cmd=$(echo "$@" | sed -e 's/^\ *//' | sed -e 's/\ *$//')
