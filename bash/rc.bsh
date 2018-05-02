@@ -16,11 +16,6 @@ shopt -s globstar
 # if not a login shell, produce a warning
 [ "$(shopt login_shell | cut -f2)" == "off" ] && echo "Warning: not a login shell. configure your terminal!"
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	source /etc/bashrc
-fi
-
 # proper bash history, finally.
 # using .bash_logout to erase non-sequencial duplicates.
 # keeps track with multiple shells open !
@@ -33,8 +28,8 @@ export PROMPT_COMMAND="history -a"      # append history to .bash_history after 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# make less more friendly for non-text input files
+[ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 
 WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -55,7 +50,6 @@ fi
 
 # Load custom bash completions
 source ${WD}/_libs/maven-bash-completion/bash_completion.bash
-
 source <(kubectl completion bash)
 
 # Load custom scripts to ~/bin

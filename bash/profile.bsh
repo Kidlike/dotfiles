@@ -22,6 +22,10 @@ if [ -d /opt/share/bin ]; then
 	export PATH="/opt/share/bin:$PATH"
 fi
 
+if [ -f /etc/bashrc ]; then
+        source /etc/bashrc
+fi
+
 if [ -r ~/.dotfiles/bash/rc.bsh ]; then
 	source ~/.dotfiles/bash/rc.bsh
 fi
