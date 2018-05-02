@@ -398,3 +398,7 @@ git-branch-prune() {
 	    git branch -D $branch
     done
 }
+
+treel() {
+	tree -C -L $1 | less -R
+}

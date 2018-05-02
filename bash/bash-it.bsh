@@ -5,6 +5,9 @@ export BASH_IT="$HOME/.bash-it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
+#export BASH_IT_THEME='90210'
+#export BASH_IT_THEME='bakke'
+#export BASH_IT_THEME='bobby'
 export BASH_IT_THEME='powerline-naked-multiline'
 
 # (Advanced): Change this to the name of your remote repo if you
