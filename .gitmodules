@@ -13,3 +13,6 @@
 [submodule "bash/_libs/bash-it"]
 	path = bash/_libs/bash-it
 	url = git@github.com:Kidlike/bash-it.git
+[submodule "bash/_libs/fzf"]
+	path = bash/_libs/fzf
+	url = git@github.com:junegunn/fzf.git
