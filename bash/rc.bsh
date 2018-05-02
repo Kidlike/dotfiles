@@ -1,7 +1,20 @@
 # .bashrc
 
+WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # uncomment to debug
 #set -x
+
+# Bash-It
+\. ${WD}/bash-it.bsh
+
+# FZF
+[ -s ~/.fzf.bash ] && \. ~/.fzf.bash
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # expand aliases on non-interactive shell
 shopt -s expand_aliases
@@ -30,26 +43,25 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|/usr/bin/lesspipe.sh %s"
 
-WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # FIRST add functions
 if [ -f ${WD}/functions.bsh ]; then
-    source ${WD}/functions.bsh
+    \. ${WD}/functions.bsh
 fi
 
 # AND THEN aliases
 if [ -f ${WD}/aliases.bsh ]; then
-    source ${WD}/aliases.bsh
+    \. ${WD}/aliases.bsh
 fi
 
 if [ -d "$HOME/.sdkman" ]; then
         export SDKMAN_DIR="$HOME/.sdkman"
-        [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+        [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && \. "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
 # Load custom bash completions
-source ${WD}/_libs/maven-bash-completion/bash_completion.bash
-source <(kubectl completion bash)
+\. ${WD}/_libs/maven-bash-completion/bash_completion.bash
+\. <(kubectl completion bash)
 
 # Load custom scripts to ~/bin
 #load-scripts
@@ -59,7 +71,7 @@ find $HOME/bin -xtype l -delete 2>/dev/null
 
 # Load bash-preexec
 if [ -f ${WD}/_libs/bash-preexec/bash-preexec.sh ]; then
-	source ${WD}/_libs/bash-preexec/bash-preexec.sh
+	\. ${WD}/_libs/bash-preexec/bash-preexec.sh
 
 	# Add preexec functions
 	if [ -n "$TMUX" -a "$(type -t preexec_tmux_rename)" == "function" ]; then
