@@ -387,3 +387,14 @@ target")
     done < <(find . -type d -name 'target')
 }
 
+kubectl-set-ns() {
+	local NS=${1:?Required parameter: namespace}
+	kubectl config set-context $(kubectl config current-context) --namespace=$1
+}
+
+git-branch-prune() {
+    git fetch -p
+    for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do 
+	    git branch -D $branch
+    done
+}

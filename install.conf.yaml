@@ -10,6 +10,7 @@
 - link:
     ~/.bash_logout: $WD/bash/logout.bsh
     ~/.bash_profile: $WD/bash/profile.bsh
+    ~/.dircolors: $WD/_libs/dircolors-zenburn/dircolors
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

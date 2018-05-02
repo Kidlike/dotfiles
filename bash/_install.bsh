@@ -1,28 +1,13 @@
 #!/bin/bash
 
 WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${WD}/../_utils.bsh"
+#source "${WD}/../_utils.bsh"
 
-BASHRC_PATH=${WD#${HOME}/}
-if [ $(grep -c "\${HOME}/${BASHRC_PATH}/rc.bsh" ${HOME}/.bashrc ) -eq 0 ]; then
-    cat >> ${HOME}/.bashrc <<EOF
+rm -f ~/.bash_it 2>/dev/null
+rm -f ~/.bashrc.bak 2>/dev/null
 
-if [ -s "\${HOME}/${BASHRC_PATH}/rc.bsh" ]; then
-    source "\${HOME}/${BASHRC_PATH}/rc.bsh"
-fi
+$WD/_libs/bash-it/install.sh --silent
+ln -sf $WD/_libs/bash-it ~/.bash-it
 
-EOF
-fi
-
-dnf-safe-install jq
-dnf-safe-install powerline
-dnf-safe-install powerline-fonts
-pip-safe-install powerline-gitstatus
-
-rm -rf ${HOME}/.config/powerline 2>/dev/null
-cp -r /etc/xdg/powerline ${HOME}/.config/powerline
-
-jq-inline '.ext.shell.theme = "default_leftonly"' ${HOME}/.config/powerline/config.json
-
-powerline-daemon --replace
+sed -i "s/^export BASH_IT_THEME=.*/export BASH_IT_THEME='powerline-naked-multiline'/g" ~/.bashrc
 

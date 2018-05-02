@@ -48,21 +48,21 @@ if [ -f ${WD}/aliases.bsh ]; then
     source ${WD}/aliases.bsh
 fi
 
+if [ -d "$HOME/.sdkman" ]; then
+        export SDKMAN_DIR="$HOME/.sdkman"
+        [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
 # Load custom bash completions
 source ${WD}/_libs/maven-bash-completion/bash_completion.bash
 
+source <(kubectl completion bash)
+
 # Load custom scripts to ~/bin
-load-scripts
+#load-scripts
 
 # delete broken symlinks
 find $HOME/bin -xtype l -delete 2>/dev/null
-
-if [ -f `which powerline-daemon` ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  source /usr/share/powerline/bash/powerline.sh
-fi
 
 # Load bash-preexec
 if [ -f ${WD}/_libs/bash-preexec/bash-preexec.sh ]; then
