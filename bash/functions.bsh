@@ -404,5 +404,5 @@ git-branch-prune() {
 }
 
 treel() {
-	tree -C -L $1 | less -R
+	tree -C "$@" | less -R
 }
