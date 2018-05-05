@@ -394,6 +394,13 @@ target")
 kubectl-set-ns() {
 	local NS=${1:?Required parameter: namespace}
 	kubectl config set-context $(kubectl config current-context) --namespace=$NS
+	export KUBE_NS="$NS"
+}
+
+kubectl-get-ns() {
+	local NS=$(grep -i namespace ~/.kube/config | awk "{print \$2}")
+	echo "$NS"
+	export KUBE_NS="$NS"
 }
 
 git-branch-prune() {
