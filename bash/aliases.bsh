@@ -109,3 +109,4 @@ fi
 alias vagrant-remove-all-boxes="vagrant box list | cut -f 1 -d ' ' | xargs -L 1 vagrant box remove -f"
 alias memory-release-inactive='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null'
 alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg; sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg'
+alias kubectl-get-ns='grep -i namespace ~/.kube/config | awk "{print \$2}"'
