@@ -393,7 +393,7 @@ target")
 
 kubectl-set-ns() {
 	local NS=${1:?Required parameter: namespace}
-	kubectl config set-context $(kubectl config current-context) --namespace=$1
+	kubectl config set-context $(kubectl config current-context) --namespace=$NS
 }
 
 git-branch-prune() {
