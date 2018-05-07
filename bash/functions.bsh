@@ -73,6 +73,13 @@ if command -v mvn >/dev/null 2>&1; then
 	}
 fi
 
+git-go-up() {
+	while ! ls .git >/dev/null 2>&1; do
+		[ "$(pwd)" == ~ ] && break;
+		cd ..
+	done
+}
+
 if command -v svn >/dev/null 2>&1; then
     function svn-go-up() {
 		while ! ls .svn >/dev/null 2>&1; do
@@ -153,7 +160,15 @@ function free-swap() {
 #	}
 #fi
 
-preexec_history() {
+precmd_tmux_rename() {
+	local gitConf="$(git-go-up; pwd)/.git/config"
+	if [ -r "$gitConf" ]; then
+		projectName=$(grep 'url' "$gitConf" | head -1 | cut -d\= -f2 | cut -d\: -f2 | cut -d\. -f1)
+		tmux rename-window " $projectName"
+	fi
+}
+
+precmd_history() {
 	history -a
 }
 
@@ -161,7 +176,7 @@ preexec_tmux_rename() {
 	if [ -n $TMUX ]; then
 		local cmd=$(echo "$@" | sed -e 's/^\ *//' | sed -e 's/\ *$//')
 		if [[ $cmd =~ ^ssh.* ]]; then
-			pid=$!
+			local pid=$!
 			# ssh user@host
 			if [ $(echo "$cmd" | grep -c '@') -eq 1 ]; then
 				local oldIFS=$IFS;
@@ -180,7 +195,7 @@ preexec_tmux_rename() {
 				if [ $(echo "$cmd" | grep -o ' ' | wc -l) -eq 1 ]; then
 					local host=$(echo "$cmd" | cut -d\  -f2)
 					local user=$(grep -A5 "Host $host" ~/.ssh/config | grep 'User ' | head -1 | sed -n 's/.*User\ \(.*\)/\1/p')
-					if [ -z $user ]; then
+					if [ -z "$user" ]; then
 						oldName=$(tmux display-message -p '#W')
 						echo "$oldName" > ~/.ssh/.sessions/$pid
 						((tmux setw automatic-rename off && sleep 1.1; [ -r ~/.ssh/.sessions/$pid ] && tmux rename-window "ssh $host";) &)
