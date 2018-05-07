@@ -14,6 +14,7 @@
     #~/.tmux.conf: $WD/tmux/_libs/oh-my-tmux/.tmux.conf
     #~/.tmux.conf.local: $WD/tmux/_libs/oh-my-tmux/.tmux.conf.local
     ~/.tmux.conf: $WD/tmux/tmux.conf
+    ~/.config/clipit/clipitrc: $WD/clipit/rc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

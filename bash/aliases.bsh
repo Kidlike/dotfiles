@@ -2,7 +2,7 @@
 
 # User specific aliases and functions
 alias ..='cd ..'
-alias tree='tree -C'
+alias tree='tree -lC'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'

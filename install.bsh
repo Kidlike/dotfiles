@@ -22,7 +22,6 @@ ln -sf "$WD" "$HOME/.dotfiles"
 
 kill -9 $(pgrep tmux) 2>/dev/null
 
-rm -rf "$HOME/.config/gconf/apps/guake" 2>/dev/null
 mkdir -p "$HOME/.config/gconf/apps" 2>/dev/null
 
 export WD="${HOME}/.dotfiles"
