@@ -12,7 +12,8 @@ fi
 
 export EDITOR='vim'
 export MAVEN_OPTS='-Xms256M -Xmx1536M'
-export IDEA_JDK="${HOME}/.sdkman/candidates/java/current"
+#export IDEA_JDK="${HOME}/.sdkman/candidates/java/current"
+export IDEA_JDK="/opt/intellij/latest/jre64"
 
 if [ -d "$HOME/bin" ] ; then
 	export PATH="$HOME/bin:$PATH"
