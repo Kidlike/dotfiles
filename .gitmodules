@@ -16,3 +16,6 @@
 [submodule "bash/_libs/fzf"]
 	path = bash/_libs/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "tmux/_libs/oh-my-tmux"]
+	path = tmux/_libs/oh-my-tmux
+	url = git@github.com:Kidlike/oh-my-tmux.git
