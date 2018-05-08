@@ -1,7 +1,7 @@
 [rc]
 use_copy=true
-use_primary=true
-synchronize=true
+use_primary=false
+synchronize=false
 automatic_paste=false
 show_indexes=false
 save_uris=true
@@ -21,5 +21,5 @@ history_key=<Ctrl><Alt>2
 actions_key=
 menu_key=
 search_key=<Ctrl><Alt>3
-offline_key=<Ctrl><Alt>O
+offline_key=
 offline_mode=false
