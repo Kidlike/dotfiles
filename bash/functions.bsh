@@ -428,3 +428,11 @@ git-branch-prune() {
 treel() {
 	tree -C "$@" | less -R
 }
+
+mvn-surefire-report() {
+	echo ">> Generating report..."
+	mvn surefire-report:report-only >/dev/null
+	mvn site -DgenerateReports=false >/dev/null
+
+	xdg-open target/site/surefire-report.html
+}
