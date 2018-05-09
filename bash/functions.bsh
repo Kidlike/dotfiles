@@ -434,5 +434,6 @@ mvn-surefire-report() {
 	mvn surefire-report:report-only >/dev/null
 	mvn site -DgenerateReports=false >/dev/null
 
-	xdg-open target/site/surefire-report.html
+	echo ">> Opening report..."
+	xdg-open target/site/surefire-report.html >/dev/null 2>&1
 }
