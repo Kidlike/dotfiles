@@ -23,6 +23,7 @@ shopt -s expand_aliases
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
+
 # If not running interactively, skip the rest
 [ -z "$PS1" ] && return
 
@@ -32,10 +33,14 @@ shopt -s globstar
 # proper bash history, finally.
 # using .bash_logout to erase non-sequencial duplicates.
 # keeps track with multiple shells open !
-export HISTCONTROL=erasedups            # erase duplicate entries
-export HISTSIZE=100000                  # big history
-export HISTFILESIZE=100000              # big history
-export HISTIGNORE="&"                   # don't log repeated commands
+export HISTCONTROL=ignoredups:erasedups            # erase duplicate entries
+export HISTSIZE=100000                             # big history
+export HISTFILESIZE=100000                         # big history
+export HISTIGNORE="&"                              # don't log repeated commands
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#shopt -s histappend
+
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
