@@ -35,7 +35,7 @@ alias robot-pre="TZ=UTC MAVEN_OPTS=\"-Xms256M -Xmx1536M -XX:PermSize=256M -XX:Ma
 alias robot-cargo="TZ=UTC MAVEN_OPTS=\"-Xms256M -Xmx1536M -XX:PermSize=256M -XX:MaxPermSize=1536m -Dfile.encoding=utf-8 -Denvironment=hudson\" mvn-dirty org.codehaus.cargo:cargo-maven2-plugin:start"
 alias robot-cargo-debug="TZ=UTC MAVEN_OPTS=\"-Xms256M -Xmx1536M -XX:PermSize=256M -XX:MaxPermSize=1536m -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n -Dfile.encoding=utf-8 -Denvironment=hudson\" mvn-dirty org.codehaus.cargo:cargo-maven2-plugin:start"
 alias robot-clear-before-run='tmux send-keys -t! -R ; tmux clear-history -t!; tmux send-keys -R ; tmux clear-history; rm -rf $(pwd)/target/robotframework* >/dev/null; rm -rf logs >/dev/null'
-alias robot-results='google-chrome $(pwd)/target/robotframework*/log.html'
+alias robot-results='xdg-open $(pwd)/target/robotframework*/log.html'
 alias robot-clean-mongo='mvn-dirty groovy:execute -Dsource=src/test/resources/nosql/pre-populate-docrepo-mongo.groovy -Dmongodb.prepopulate.skip=false -o'
 alias robot-run="robot-clear-before-run; TZ=UTC mvn-dirty com.googlecode.robotframework-maven-plugin:robotframework-maven-plugin:run -Dexclude.tags='Exclude'"
 alias robot-run-debug="robot-clear-before-run; TZ=UTC MAVEN_OPTS='-Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y' mvn-dirty com.googlecode.robotframework-maven-plugin:robotframework-maven-plugin:run -Dexclude.tags='Exclude'"
@@ -45,13 +45,13 @@ alias robot2-cargo-debug="TZ=UTC MAVEN_OPTS=\"-Xms256M -Xmx1536M -XX:PermSize=25
 alias robot2-run="robot-clear-before-run; TZ=UTC mvn-dirty -f pom-new-ats.xml org.robotframework:robotframework-maven-plugin:run -Dexclude.tags='Exclude'"
 alias robot2-run-debug="robot-clear-before-run; TZ=UTC MAVEN_OPTS='-Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y' mvn-dirty -f pom-new-ats.xml org.robotframework:robotframework-maven-plugin:run -Dexclude.tags='Exclude'"
 
-alias pit-results='google-chrome $(pwd)/target/pit-reports/index.html'
 alias mvn-dirty="mvn -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -Djasmine.skip=true -DfailIfNoTests=false"
-alias mvn-dirty-test="mvn -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -Djasmine.skip=true -DfailIfNoTests=false -o clean test"
-alias mvn-dirty-test-debug="mvn -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -Djasmine.skip=true -DfailIfNoTests=false -Dmaven.surefire.debug -o clean test"
+alias mvn-dirty-test="mvn -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -Djasmine.skip=true -DfailIfNoTests=false clean test"
+alias mvn-dirty-test-debug="mvn -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -Djasmine.skip=true -DfailIfNoTests=false -Dmaven.surefire.debug clean test"
 alias mvn-dirty-install="mvn-dirty -DskipTests -Dmaven.test.skip=true -Dcargo.maven.skip=true clean install"
 alias mvn-dirty-package="mvn-dirty -DskipTests -Dmaven.test.skip=true -Dcargo.maven.skip=true clean package"
 alias mvn-build-n-deploy='mvn-dirty-install -o && mvn-tomcat-deploy'
+alias mvn-pitest='mvn-dirty clean test site -Dpitest'
 alias mvntail='mtail -cS maven'
 alias cdmvn='cdpath; mvn-go-up; tmux-mvn-rename'
 

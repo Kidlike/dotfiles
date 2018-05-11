@@ -212,7 +212,7 @@ preexec_tmux_rename() {
 
 function pitest-results() {
 	lastReport=$(\ls -1trh target/pit-reports/ | tail -1)
-    google-chrome $(pwd)/target/pit-reports/${lastReport}
+	xdg-open $(pwd)/target/pit-reports/${lastReport} >/dev/null 2>&1
 }
 
 function lllast() {
@@ -437,3 +437,4 @@ mvn-surefire-report() {
 	echo ">> Opening report..."
 	xdg-open target/site/surefire-report.html >/dev/null 2>&1
 }
+
