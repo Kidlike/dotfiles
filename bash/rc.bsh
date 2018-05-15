@@ -66,7 +66,8 @@ fi
 
 # Load custom bash completions
 \. ${WD}/_libs/maven-bash-completion/bash_completion.bash
-\. <(kubectl completion bash)
+command -v kubectl >/dev/null && \. <(kubectl completion bash)
+command -v helm >/dev/null && \. <(helm completion bash)
 
 # Load custom scripts to ~/bin
 #load-scripts
