@@ -60,18 +60,16 @@ function grepkill(){
 	fi
 }
 
-if command -v mvn >/dev/null 2>&1; then
-	function mvn-rdebug-test() {
-		mvn clean test -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8002 -Xnoagent -Djava.compiler=NONE" -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -DfailIfNoTests=false -Dtest=$1 -o
-	}
+function mvn-rdebug-test() {
+	mvn clean test -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8002 -Xnoagent -Djava.compiler=NONE" -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -DfailIfNoTests=false -Dtest=$1 -o
+}
 
-	function mvn-go-up() {
-		while ! ls pom.xml >/dev/null 2>&1; do
-			[ "$(pwd)" == ~ ] && break;
-			cd ..
-		done
-	}
-fi
+function mvn-go-up() {
+	while ! ls pom.xml >/dev/null 2>&1; do
+		[ "$(pwd)" == ~ ] && break;
+		cd ..
+	done
+}
 
 git-go-up() {
 	while ! ls .git >/dev/null 2>&1; do
@@ -431,10 +429,20 @@ treel() {
 
 mvn-surefire-report() {
 	echo ">> Generating report..."
-	mvn surefire-report:report-only >/dev/null
-	mvn site -DgenerateReports=false >/dev/null
+	mvn surefire-report:report-only "$@" >/dev/null
+	mvn site -DgenerateReports=false "$@" >/dev/null
 
 	echo ">> Opening report..."
 	xdg-open target/site/surefire-report.html >/dev/null 2>&1
+}
+
+jacoco-results() {
+	xdg-open target/site/jacoco/index.html >/dev/null 2>&1
+}
+
+git-latest-release() {
+	curl --silent "https://api.github.com/repos/$1/releases/latest" |
+		grep '"tag_name":' |
+		sed -E 's/.*"([^"]+)".*/\1/'
 }
 
