@@ -446,3 +446,12 @@ git-latest-release() {
 		sed -E 's/.*"([^"]+)".*/\1/'
 }
 
+kubectl-logs() {
+	local search="$1"
+	kubectl logs -f $(kubectl get pods | grep "$search" | awk '{print $1}')
+}
+
+math-sum() {
+	local nums=${*:-$(</dev/stdin)}
+	echo $nums | tr ' ' '+' | bc
+}
