@@ -455,3 +455,15 @@ math-sum() {
 	local nums=${*:-$(</dev/stdin)}
 	echo $nums | tr ' ' '+' | bc
 }
+
+git-submodule-rm() {
+	local module=${1:?Please specify submodule}
+	module=$(echo $module | sed 's#/*$##')
+
+	ls -ld "$module" >/dev/null || return
+	ls -ld ".git/modules/$module" >/dev/null || return
+
+	git submodule deinit -f -- "$module"
+	rm -rf ".git/modules/$module"
+	git rm -f "$module"
+}
