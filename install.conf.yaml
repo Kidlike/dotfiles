@@ -11,6 +11,7 @@
     ~/.bash_logout: $WD/bash/logout.bsh
     ~/.bash_profile: $WD/bash/profile.bsh
     ~/.dircolors: $WD/_libs/dircolors-zenburn/dircolors
+    ~/.tmux: $WD/tmux/_libs/oh-my-tmux/
     ~/.tmux.conf: $WD/tmux/_libs/oh-my-tmux/.tmux.conf
     ~/.tmux.conf.local: $WD/tmux/_libs/oh-my-tmux/.tmux.conf.local
     ~/.config/clipit/clipitrc: $WD/clipit/rc
