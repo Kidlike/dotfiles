@@ -7,9 +7,6 @@
 [submodule "configs/bash/_libs/maven-bash-completion"]
 	path = configs/bash/_libs/maven-bash-completion
 	url = git@github-kidlike:juven/maven-bash-completion.git
-[submodule "_libs/dircolors-zenburn"]
-	path = _libs/dircolors-zenburn
-	url = git@github.com:ivoarch/dircolors-zenburn.git
 [submodule "bash/_libs/bash-it"]
 	path = bash/_libs/bash-it
 	url = git@github.com:Kidlike/bash-it.git
