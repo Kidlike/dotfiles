@@ -467,3 +467,9 @@ git-submodule-rm() {
 	rm -rf ".git/modules/$module"
 	git rm -f "$module"
 }
+
+git-branch-rm() {
+	local branch=${1:?Please specify branch name}
+	git push origin --delete "$branch"
+	git branch -D "$branch"
+}
