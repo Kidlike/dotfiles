@@ -16,3 +16,6 @@
 [submodule "_libs/dircolors-zenburn"]
 	path = _libs/dircolors-zenburn
 	url = git@github.com:Kidlike/dircolors-zenburn.git
+[submodule "tmux/_libs/oh-my-tmux"]
+	path = tmux/_libs/oh-my-tmux
+	url = https://github.com/Kidlike/oh-my-tmux
