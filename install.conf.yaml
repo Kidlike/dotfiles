@@ -13,8 +13,8 @@
     ~/.dircolors: $WD/_libs/dircolors-zenburn/dircolors
     ~/.oh-my-tmux: $WD/tmux/_libs/oh-my-tmux
     ~/.config/clipit/clipitrc: $WD/clipit/rc
-    ~/.vimrc: $WD/vim/_libs/dotbot/vimrc
-    ~/.vim: $WD/vim/_libs/dotbot/vim
+    ~/.vimrc: $WD/vim/vimrc
+    ~/.vim: $WD/vim
     ~/.config/tilda: $WD/tilda
 
 - shell:
