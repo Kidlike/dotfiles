@@ -19,3 +19,6 @@
 [submodule "tmux/_libs/oh-my-tmux"]
 	path = tmux/_libs/oh-my-tmux
 	url = https://github.com/Kidlike/oh-my-tmux
+[submodule "vim/_libs/dotbot"]
+	path = vim/_libs/dotbot
+	url = git@github.com:audibleblink/dotbot.git
