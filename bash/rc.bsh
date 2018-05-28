@@ -38,10 +38,13 @@ export HISTSIZE=100000                             # big history
 export HISTFILESIZE=100000                         # big history
 export HISTIGNORE="&"                              # don't log repeated commands
 
-# printf '\e[5 q' will change cursor to iBeam
-export PROMPT_COMMAND="$PROMPT_COMMAND; history -a; printf '\e[5 q';"
+# printf '\e[3 q' will change cursor to underscore
+export PROMPT_COMMAND="$PROMPT_COMMAND; history -a; printf '\e[3 q';"
 #export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 #shopt -s histappend
+
+# cursor color
+#printf '%b' '\e]12;#acc9e6\a'
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
