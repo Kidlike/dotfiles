@@ -2,11 +2,11 @@ set nocompatible
 filetype off
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-sneak'
 Plug 'kana/vim-textobj-user' 
@@ -24,14 +24,10 @@ Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown',      { 'for': 'markdown' }
 
-Plug 'chrisbra/vim-zsh',               { 'for': 'zsh' }
+"Plug 'chrisbra/vim-zsh',               { 'for': 'zsh' }
 Plug 'fatih/vim-go',                   { 'for': 'go' }
 Plug 'freitass/todo.txt-vim',          { 'for': 'txt' }
 Plug 'mattn/emmet-vim',                { 'for': ['html', 'javascript.jsx'] }
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec',           { 'for': 'ruby' }
-Plug 'tpope/vim-bundler',              { 'for': 'ruby' }
-Plug 'tpope/vim-cucumber',             { 'for': 'ruby' }
 
 call plug#end()
 filetype plugin indent on
