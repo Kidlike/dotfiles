@@ -21,8 +21,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
 
-Plug 'vimwiki/vimwiki'
-Plug 'suan/vim-instant-markdown',      { 'for': 'markdown' }
+"Plug 'vimwiki/vimwiki'
+"Plug 'suan/vim-instant-markdown',      { 'for': 'markdown' }
 
 "Plug 'chrisbra/vim-zsh',               { 'for': 'zsh' }
 Plug 'fatih/vim-go',                   { 'for': 'go' }
