@@ -37,7 +37,9 @@ export HISTCONTROL=ignoredups:erasedups            # erase duplicate entries
 export HISTSIZE=100000                             # big history
 export HISTFILESIZE=100000                         # big history
 export HISTIGNORE="&"                              # don't log repeated commands
-export PROMPT_COMMAND="$PROMPT_COMMAND; history -a;"
+
+# printf '\e[5 q' will change cursor to iBeam
+export PROMPT_COMMAND="$PROMPT_COMMAND; history -a; printf '\e[5 q';"
 #export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 #shopt -s histappend
 
