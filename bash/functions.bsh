@@ -92,13 +92,14 @@ function cd-switch() {
 }
 
 function load-scripts() {
-    if [ -d ~/install/_scripts -a -d ~/bin ]; then
-        cd ~/install/_scripts
+    if [ -d ~/.dotfiles/scripts ]; then
+        mkdir -p ~/.local/bin 2>/dev/null
+        cd ~/.dotfiles/scripts
         for f in $(\ls -1); do
             linkName=$(echo $f | rev | cut -d\. -f2- | rev)
-            rm -f ~/bin/$linkName 2>/dev/null
+            rm -f ~/.local/bin/$linkName 2>/dev/null
             if [ -x $f ]; then
-                ln -sf ~/install/_scripts/$f ~/bin/$linkName
+                ln -sf ~/.dotfiles/scripts/$f ~/.local/bin/$linkName
             fi
         done
         cd - >/dev/null 2>&1
@@ -106,11 +107,11 @@ function load-scripts() {
 }
 
 function unload-scripts() {
-    if [ -d ~/install/_scripts -a -d ~/bin ]; then
-        cd ~/install/_scripts
+    if [ -d ~/.dotfiles/scripts ]; then
+        cd ~/.dotfiles/scripts
         for f in $(\ls -1); do
             linkName=$(echo $f | rev | cut -d\. -f2- | rev)
-            rm -f ~/bin/$linkName 2>/dev/null
+            rm -f ~/.local/bin/$linkName 2>/dev/null
         done
         cd - >/dev/null 2>&1
     fi

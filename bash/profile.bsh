@@ -23,6 +23,9 @@ if [ -d /opt/share/bin ]; then
 	export PATH="/opt/share/bin:$PATH"
 fi
 
+mkdir -p $HOME/.local/bin 2>/dev/null
+export PATH="$HOME/.local/bin:$PATH"
+
 if [ -f /etc/bashrc ]; then
         source /etc/bashrc
 fi

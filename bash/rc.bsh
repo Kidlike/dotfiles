@@ -69,7 +69,7 @@ command -v kubectl >/dev/null && \. <(kubectl completion bash)
 command -v helm >/dev/null && \. <(helm completion bash)
 
 # Load custom scripts to ~/bin
-#load-scripts
+load-scripts
 
 # delete broken symlinks
 find $HOME/bin -xtype l -delete 2>/dev/null

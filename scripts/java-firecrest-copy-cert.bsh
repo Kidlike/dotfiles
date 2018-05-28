@@ -1,0 +1,40 @@
+#!/bin/bash
+
+onExit() {
+    rm -f /tmp/firecresttest.cert
+}
+
+trap onExit EXIT
+
+usage() {
+    echo "Usage: java-firecrest-copy-cert <JDK_SRC> <JDK_TARGET>"
+}
+
+if [ $# -ne 2 ]; then
+    usage
+    exit 1
+fi
+
+if [ ! -x "$1/jre/bin/keytool" ]; then
+    echo "Couldn't find the keytool binary: $1/jre/bin/keytool"
+    exit 1;
+fi
+
+if [ ! -r "$1/jre/lib/security/cacerts" ]; then
+    echo "Can't read from: $1/jre/lib/security/cacerts"
+    exit 1;
+fi
+
+if [ ! -x "$2/jre/bin/keytool" ]; then
+    echo "Couldn't find the keytool binary: $2/jre/bin/keytool"
+    exit 1;
+fi
+
+if [ ! -w "$2/jre/lib/security/cacerts" ]; then
+    echo "Can't write to: $2/jre/lib/security/cacerts"
+    exit 1;
+fi
+
+$1/jre/bin/keytool -keystore $1/jre/lib/security/cacerts -alias firecresttest -export -file /tmp/firecresttest.cert
+$2/jre/bin/keytool -keystore $2/jre/lib/security/cacerts -alias firecresttest -import -file /tmp/firecresttest.cert
+
