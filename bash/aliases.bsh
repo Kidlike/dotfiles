@@ -53,7 +53,8 @@ alias mvn-dirty-package="mvn-dirty -DskipTests -Dmaven.test.skip=true -Dcargo.ma
 alias mvn-build-n-deploy='mvn-dirty-install -o && mvn-tomcat-deploy'
 alias mvn-pitest='mvn-dirty clean test site -Dpitest'
 alias mvntail='mtail -cS maven'
-alias cdmvn='cdpath; mvn-go-up; tmux-mvn-rename'
+alias cdmvn='cdpath; mvn-go-up'
+alias cdgit='cdpath; git-go-up'
 
 if command -v svn >/dev/null 2>&1; then
     alias cdsvn='cdpath; svn-go-up;'
