@@ -4,6 +4,7 @@ my dotfiles 🤙
 ## Install
 * Installation uses [dotbot](https://github.com/anishathalye/dotbot)
 * Will create softlinks based on `install.conf.yaml`
+* The install script is idempotent (will produce the same result on subsequent executions)
 ```
 git clone --recursive git@github.com:Kidlike/dotfiles.git
 cd dotfiles
