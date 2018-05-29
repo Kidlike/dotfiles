@@ -52,8 +52,9 @@ cd dotfiles
 * `alt-t` `alt-a t` new tab
 * `alt-w` `alt-a tab` select window
 * `alt-q` `alt-a q` help with hotkeys
+* `alt-l` clear output buffer (like ctrl+l but better)
 
-#### Splitting
+#### Panes
 * `alt--` `alt-a -` create pane horizontally
 * `alt-\` `alt-a \` create pane vertically
 * `alt-|` `alt-a |` create pane vertically
@@ -61,7 +62,10 @@ cd dotfiles
 * `alt-right` `alt-a right` select right pane
 * `alt-down` `alt-a down` select down pane
 * `alt-up` `alt-a up` select up pane
-
+* `alt-a h` move vertical split line to the left
+* `alt-a l` move vertical split line to the right
+* `alt-a j` move horizontal split line down
+* `alt-a k` move horizontal split line up
 
 #### Advanced (or not?)
 * `alt-z` `alt-a z` Zoom-in (maximizes pane)
@@ -76,3 +80,9 @@ cd dotfiles
 * `alt-p` `alt-a p` go to previous window
 * `alt-a @` kill window (with prompt)
 * `alt-a c` kill pane (without prompt)
+
+## Screenshots
+<img src="https://i.imgur.com/tBnjxfC.jpg" width="500px"/>
+<img src="https://i.imgur.com/VdYa2M3.png" width="500px"/>
+<img src="https://i.imgur.com/rxc5Nn2.png" width="500px"/>
+<img src="https://i.imgur.com/72ptmc4.png" width="500px"/>
