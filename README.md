@@ -45,6 +45,7 @@ cd dotfiles
 ## Hotkeys
 * `F1` opens terminal (tilda)
 * `ctrl-c/v` as per normal
+* `ctrl-r` fzf
 
 ### Tmux
 #### Basics
