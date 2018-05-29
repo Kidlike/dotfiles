@@ -26,13 +26,15 @@ cd dotfiles
   * supports themes
   * faster, more maintainable
 * kidlike theme is more minimal, looks good with `zenburn`.
-* custom status line - left
-  * tmux windows
-* custom status line - right (color coded)
-  * battery percentage
-  * time / date
-  * username
-  * hostname
+* custom status line
+  * left
+    * tmux windows
+* custom status line
+  * right (color coded)
+    * battery percentage
+    * time / date
+    * username
+    * hostname
 * working directory is maintained when openning panes/windows.
 
 ### Bash
@@ -41,9 +43,16 @@ cd dotfiles
 * The configs are loaded by `~/.bash_profile` which means will only work for login shells.
 * Command history is curated by `~/.bash_logout`
   * Command history from other shells can be appended in current shell `exec bash -li`
-* Uses [bash-it](https://github.com/Kidlike/bash-it) with a custom theme (powerline-naked-multiline)
 * Uses [fzf](https://github.com/junegunn/fzf)
 * Uses [bash-preexec](https://github.com/rcaloras/bash-preexec)
+* Uses [bash-it](https://github.com/Kidlike/bash-it) with a custom theme (powerline-naked-multiline)
+  * powerline-like theme
+  * segments:
+    * kubernetes namespace (conditional)
+    * username
+    * git info (conditional)
+    * working directory
+    * last status code (conditional)
 
 ### Vim
 * insert mode cursor: `|`
@@ -91,9 +100,12 @@ cd dotfiles
 * `alt-p` `alt-a p` go to previous window
 * `alt-a @` kill window (with prompt)
 * `alt-a c` kill pane (without prompt)
+* `alt-[` `alt-a {` swap panes clockwise
+* `alt-]` `alt-a }` swap panes counter-clockwise
 
 ## Screenshots
 <img src="https://i.imgur.com/tBnjxfC.jpg" width="500px"/>
 <img src="https://i.imgur.com/VdYa2M3.png" width="500px"/>
 <img src="https://i.imgur.com/rxc5Nn2.png" width="500px"/>
 <img src="https://i.imgur.com/72ptmc4.png" width="500px"/>
+<img src="https://i.imgur.com/Z6qcKsp.png" width="500px"/>
