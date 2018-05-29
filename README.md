@@ -26,6 +26,13 @@ cd dotfiles
   * supports themes
   * faster, more maintainable
 * kidlike theme is more minimal, looks good with `zenburn`.
+* custom status line - left
+  * tmux windows
+* custom status line - right (color coded)
+  * battery percentage
+  * time / date
+  * username
+  * hostname
 * working directory is maintained when openning panes/windows.
 
 ### Bash
