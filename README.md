@@ -11,7 +11,7 @@ cd dotfiles
 ./install.bsh
 ```
 
-## Terminal Features
+## Terminal
 * Setup composition: `tilda -> tmux -> xterm-256color -> bash`
 * Font: `Source Code Pro 11`
 * Semi-transparent
@@ -36,6 +36,7 @@ cd dotfiles
 * working directory is maintained when openning panes/windows.
 
 ### Bash
+* prompt cursor: `_`
 * `~/.bashrc` stays untouched. the machine's local copy will be appended to the configuration.
 * The configs are loaded by `~/.bash_profile` which means will only work for login shells.
 * Command history is curated by `~/.bash_logout`
@@ -45,6 +46,7 @@ cd dotfiles
 * Uses [bash-preexec](https://github.com/rcaloras/bash-preexec)
 
 ### Vim
+* insert mode cursor: `|`
 * vim configs based on [audibleblink/dotbot](https://github.com/audibleblink/dotbot)
 * added custom powerline-like statusbar
 * removed any unused plugins
