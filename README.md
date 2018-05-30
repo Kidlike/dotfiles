@@ -3,8 +3,10 @@ my dotfiles 🤙
 
 ## Install
 * Installation uses [dotbot](https://github.com/anishathalye/dotbot)
-* Will create softlinks based on `install.conf.yaml`
-* The install script is idempotent (will produce the same result on subsequent executions)
+* It will create softlinks based on `install.conf.yaml`
+* The install script is idempotent:
+    * will produce the same result on subsequent executions
+    * crucial for updateability
 ```
 git clone --recursive git@github.com:Kidlike/dotfiles.git
 cd dotfiles
@@ -21,7 +23,7 @@ cd dotfiles
 * removed most hotkeys ([mostly](https://github.com/lanoxx/tilda/issues/288))
 * _note: `tilda` fully supports VTE (version 5003), whereas `guake` doesn't._
 
-### Tmux
+### Tmux (terminal multiplexer)
 * tmux configs: [oh-my-tmux](https://github.com/Kidlike/oh-my-tmux) (based on [.tmux](https://github.com/gpakosz/.tmux)) with some modifications:
   * supports themes
   * faster, more maintainable
@@ -90,6 +92,7 @@ cd dotfiles
 #### Advanced (or not?)
 * `alt-z` `alt-a z` Zoom-in (maximizes pane)
 * `alt-a m` toggle mouse mode on/off
+  * [long story short](https://unix.stackexchange.com/questions/145050/): switch between scrolling of the main and alternate screen buffers (terminal output / `less` output)
 * `alt->` send pane to window number
 * `alt-<` retrieve pane from window number
 * `alt-m` open manpage for given command (in new pane)
