@@ -45,10 +45,10 @@ filetype plugin indent on
     set t_ut=
   endif
   set background=dark
-  "colorscheme onedark
+  colorscheme onedark
   "colorscheme oneplus
   "colorscheme wombat
-  colorscheme zenburn
+  "colorscheme zenburn
 
   hi CursorLine cterm=None
   let g:onedark_terminal_italics = 1
