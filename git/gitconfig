@@ -1,0 +1,29 @@
+[alias]
+    aa = add -A
+    co = checkout
+    cp = cherry-pick
+    st = status -sb
+    cl = clone
+    ci = commit
+    cm = commit -m
+    co = checkout
+    br = branch
+    dc = diff --cached
+    lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
+    last = log -1 --stat
+    unstage = reset HEAD --
+    df = "difftool --tool=vimdiff"
+    dfy = "difftool --tool=vimdiff -y"
+    s = "stash show"
+    s-save = "stash save"
+    s-list = "stash list"
+    s-show = "!f() { git stash show stash^{/$*}; }; f"
+    s-show-p = "!f() { git stash show stash^{/$*} -p; }; f"
+    s-apply = "!f() { git stash apply stash^{/$*}; }; f"
+[core]
+    quotepath = false
+[push]
+    default = simple
+
+[diff]
+    tool = meld
