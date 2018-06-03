@@ -2,3 +2,4 @@
 *.iml
 bash_history
 .netrwhist
+vim/plugged

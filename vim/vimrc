@@ -12,7 +12,7 @@ set backspace=2
 set cursorline
 set expandtab
 "set foldlevelstart=160
-set foldmethod=indent
+set foldmethod=syntax
 set hidden
 set hlsearch
 set incsearch
@@ -102,4 +102,6 @@ hi Normal guibg=NONE ctermbg=NONE
 
 " StatusLine
 so ~/.vim/statusline.vim
+
+autocmd Filetype xml setlocal ts=4 sts=4 sw=4
 
