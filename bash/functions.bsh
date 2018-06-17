@@ -160,11 +160,13 @@ function free-swap() {
 #fi
 
 precmd_tmux_rename() {
-	local gitConf="$(git-go-up; pwd)/.git/config"
-	if [ -r "$gitConf" ]; then
-		projectName=$(grep 'url' "$gitConf" | head -1 | cut -d\= -f2 | cut -d\: -f2 | cut -d\. -f1)
-		tmux rename-window " $projectName"
-	fi
+  local gitConf="$(git-go-up; pwd)/.git/config"
+  if [ -r "$gitConf" ]; then
+    projectName=$(grep 'url' "$gitConf" | head -1 | cut -d\= -f2 | cut -d\: -f2 | cut -d\. -f1)
+    tmux rename-window " $projectName"
+  elif [ "$(realpath `pwd`)" == "$(realpath ~/.m2/)" ]; then
+    tmux rename-window "☳ ~/.m2/"
+  fi
 }
 
 precmd_history() {
@@ -301,6 +303,16 @@ EOF
 
         echo Created '~/.m2/settings-security.xml';
     fi
+}
+
+mvn-encrypt-passwd() {
+  if [ ! -r ~/.m2/settings-security.xml ]; then
+    mvn-generate-master-password
+  fi
+  read -p "Please enter your password: " -s PASSWORD
+  local ENCRYPTED="$(mvn -ep ${PASSWORD})"
+  echo
+  echo "Your encrypted password is: ${ENCRYPTED}"
 }
 
 mvn-set-passwd() {
