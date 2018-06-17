@@ -14,6 +14,8 @@ alias mtail='multitail --config ~/.multitail.conf -n 102400 -m 0 -mb 100MB'
 alias xclip='xclip -selection clipboard'
 alias cpath='pwd | tr -d "\n" | xclip'
 alias cdpath='cd "$(xclip -o)"'
+alias cppath='cp -pr "$(xclip -o)" .'
+alias cpfrompath='cp -pr "$(xclip -o)"/* .'
 alias compass-init="compass init --syntax=sass --css-dir=css --javascripts-dir=js --sass-dir=sass --images-dir=images"
 alias surfraw='surfraw -browser=/usr/bin/google-chrome'
 alias sr='sr -browser=/usr/bin/google-chrome'
