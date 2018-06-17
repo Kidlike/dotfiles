@@ -88,3 +88,12 @@ if [ -f ${WD}/_libs/bash-preexec/bash-preexec.sh ]; then
 	precmd_functions+=(precmd_history)
 fi
 
+# reconnect to last running ssh session
+if [ -n "$TMUX" ]; then
+    last_ssh_pid=$(for tty in `tmux list-panes -F "#{pane_tty}" | sed 's#/dev/##'`; do pgrep -t $tty ssh | xargs -I {} echo "$tty;{}"; done | sort -V | tail -1 | cut -d\; -f2)
+    if [ -n "$last_ssh_pid" ]; then
+	cmd_ssh=$(tr '\0' ' ' < "/proc/$last_ssh_pid/cmdline")
+	$cmd_ssh
+    fi
+fi
+
