@@ -12,7 +12,7 @@ set backspace=2
 set cursorline
 set expandtab
 "set foldlevelstart=160
-set foldmethod=syntax
+set foldmethod=manual
 set hidden
 set hlsearch
 set incsearch
