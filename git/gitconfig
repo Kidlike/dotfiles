@@ -1,4 +1,6 @@
 [alias]
+    b  = branch
+    ba  = branch -a
     aa = add -A
     co = checkout
     cp = cherry-pick
@@ -7,7 +9,6 @@
     ci = commit
     cm = commit -m
     co = checkout
-    br = branch
     dc = diff --cached
     lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
     last = log -1 --stat
