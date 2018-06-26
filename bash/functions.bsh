@@ -486,3 +486,10 @@ git-branch-rm() {
 	git push origin --delete "$branch"
 	git branch -D "$branch"
 }
+
+transfer.sh() {
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) | xclip
+    xclip -o
+    echo
+}
+
