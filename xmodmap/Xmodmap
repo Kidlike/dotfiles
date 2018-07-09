@@ -1,0 +1,2 @@
+! remap context menu to return
+keycode 135 = Return

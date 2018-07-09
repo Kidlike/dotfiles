@@ -17,6 +17,7 @@
     ~/.vim: $WD/vim
     ~/.config/tilda: $WD/tilda
     ~/.gitconfig: $WD/git/gitconfig
+    ~/.Xmodmap: $WD/xmodmap/Xmodmap
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
