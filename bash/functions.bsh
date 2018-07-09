@@ -493,3 +493,13 @@ transfer.sh() {
     echo
 }
 
+ls-last() {
+  \ls -1trh | tail -1 | xclip -selection clipboard
+  xclip -selection clipboard -o
+  export last=$(xclip -selection clipboard -o)
+}
+
+imgurbash-last() {
+  # list of supported files copied from imgur website
+  imgurbash "$(\ls -1trh | egrep -i '(\.jpg$|\.jpeg$|\.png$|\.gif$|\.apng$|\.tiff$|\.tif$|\.bmp$|\.pdf$|\.xcf$|\.webp$|\.mp4$|\.mov)' | tail -1)"
+}
