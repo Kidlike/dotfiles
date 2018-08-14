@@ -25,6 +25,7 @@ alias pom2json='xml2json -t xml2json --pretty --strip_newlines --strip_namespace
 alias jq='jq --indent 4'
 alias intern-10-commands="echo \$PATH | tr ':' '\n' | xargs -I {} sh -c \"echo ==============={}; ls -1 {} | head -10\""
 alias rdesktop='rdesktop -p - -g 1600x900'
+alias kube='kubectl'
 
 # color_prompt is set from ~/.bashrc
 alias ls='ls -hF --color=auto --group-directories-first'
