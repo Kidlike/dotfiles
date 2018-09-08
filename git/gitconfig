@@ -1,6 +1,7 @@
 [alias]
     b  = branch
     ba  = branch -a
+    b-mv = "branch -m"
     aa = add -A
     co = checkout
     cp = cherry-pick
@@ -21,6 +22,7 @@
     s-show = "!f() { git stash show stash^{/$*}; }; f"
     s-show-p = "!f() { git stash show stash^{/$*} -p; }; f"
     s-apply = "!f() { git stash apply stash^{/$*}; }; f"
+    heads = "show-ref --heads"
 [core]
     quotepath = false
 [push]
