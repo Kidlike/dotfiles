@@ -117,6 +117,7 @@ alias tam-cms-ci-deploy='cd ~/tamedia/cd2/code/cms-ci-deploy'
 alias tam-cms-front='cd ~/tamedia/cd2/code/cms-frontend'
 alias tam-jenkins-lib='cd ~/tamedia/cd2/code/jenkins-shared-libs'
 alias tam-devops='cd ~/tamedia/devops/code/devops'
+alias tam-architechs='cd ~/tamedia/devops/code/architechs/kubernetes'
 
 alias stef='cd ~/stef/code/'
 alias stef-dots='cd ~/stef/code/dotfiles'

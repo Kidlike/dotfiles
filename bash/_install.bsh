@@ -8,6 +8,7 @@ rm -f ~/.bash-it 2>/dev/null
 rm -f ~/.bashrc.bak 2>/dev/null
 $WD/_libs/bash-it/install.sh --silent --no-modify-config
 ln -sf $WD/_libs/bash-it ~/.bash-it
+bash-it enable completion sdkman
 
 # FZF
 $WD/_libs/fzf/install --key-bindings --completion --no-update-rc
