@@ -73,7 +73,7 @@ function mvn-go-up() {
 
 function git-go-up() {
   while ! ls .git/ >/dev/null 2>&1; do
-    [ "$(pwd)" == ~ ] && break;
+    [[ "$(pwd)" == ~ || "$(pwd)" == "/" ]] && break;
     cd ..
   done
 }
@@ -407,7 +407,7 @@ function git-latest-release() {
 
 function kube-logs() {
   local search="$1"
-  kubectl logs -f $(kubectl get pods | grep "$search" | awk '{print $1}')
+  kubectl logs -f $(kubectl get pods | grep "^$search" | awk '{print $1}' | head -1)
 }
 
 function math-sum() {
@@ -433,6 +433,21 @@ function git-branch-rm() {
   git branch -D "$branch"
 }
 
+function git-branch-rename() {
+  local newName=${1:?Please specify new branch name}
+  git branch -m "$newName"
+  git push origin ":$(git branch | grep \* | cut -d ' ' -f2)" "$newName"
+  git push origin -u "$newName"
+}
+
+function temperatures() {
+  paste \
+    <(cat /sys/class/thermal/thermal_zone*/type) \
+    <(cat /sys/class/thermal/thermal_zone*/temp) \
+    | column -s $'\t' -t \
+    | sed 's/\(.\)..$/.\1°C/'
+}
+
 function transfer.sh() {
   curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) | xclip
   xclip -o
@@ -448,6 +463,12 @@ function ls-last() {
 function imgurbash-last() {
   # list of supported files copied from imgur website
   imgurbash "$(\ls -1trh | egrep -i '(\.jpg$|\.jpeg$|\.png$|\.gif$|\.apng$|\.tiff$|\.tif$|\.bmp$|\.pdf$|\.xcf$|\.webp$|\.mp4$|\.mov)' | tail -1)"
+}
+
+function imgurbash-last-picture() {
+  cd ~/Pictures
+  imgurbash-last
+  cd - >/dev/null
 }
 
 function git-rm-local-commits() {
@@ -508,4 +529,40 @@ function preexec_tmux_rename() {
 
 function aws-login() {
   $(aws ecr get-login --no-include-email --region eu-central-1)
+}
+
+function cms-deploy() {
+  local namespace=${1:?Please specify deployment environment}
+  local service=${2:?Please specify service name}
+  local version=${3:?Please specify version}
+  helm upgrade --install \
+    --wait --timeout 90 \
+    --version ${version} --namespace ${namespace} \
+    --set image.repository=dock.tam-cms.com/${service},image.tag=${version} ${service}-${namespace} \
+    kube/charts/${service}
+}
+
+function docker-image-rm() {
+  local imageId=${1:?Please specify docker image id}
+  if [ $(docker image ls -a | grep ${imageId} | wc -l) -gt 1 ]; then
+    while read line; do
+      local repo=$(echo $line | cut -d\  -f1)
+      local tag=$(echo $line | cut -d\  -f2)
+      docker image rm "${repo}:${tag}"
+    done < <(docker image ls -a | grep ${imageId} | tr -s ' ' ' ')
+  fi
+  if [ $(docker container ls -a | grep -c $imageId) -gt 0 ]; then
+    echo ">> Deleting image containers..."
+    docker container ls -a | grep -i $imageId | cut -d\  -f 1 | xargs docker container rm
+  fi
+
+  if [ $(docker image ls -a | grep -c $imageId) -gt 0 ]; then
+    echo ">> Deleting image..."
+    docker image rm $imageId
+  fi
+}
+
+function cms-get-auth-keystore-password() {
+  local namespace=${1:?Please specify deployment environment}
+  kubectl -n ${namespace} get secret auth-secrets-${namespace} -o yaml | grep AUTH_KEYSTORE_PASSWORD | sed -E 's/.*: (.*)/\1/' | base64 --decode
 }
