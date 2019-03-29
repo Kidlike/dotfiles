@@ -21,6 +21,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/goyo.vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'chrisbra/csv.vim'
 
 "Plug 'vimwiki/vimwiki'
 "Plug 'suan/vim-instant-markdown',      { 'for': 'markdown' }
