@@ -112,7 +112,9 @@ alias memory-release-inactive='sync && echo 3 | sudo tee /proc/sys/vm/drop_cache
 alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg; sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg'
 
 alias tam='cd ~/tamedia/cd2/code/'
+alias tam-miro='cd ~/tamedia/devops/miro'
 alias tam-cms='cd ~/tamedia/cd2/code/cms'
+alias tam-cms-deployments='cd ~/tamedia/cd2/code/cms-deployments'
 alias tam-cms-ci-deploy='cd ~/tamedia/cd2/code/cms-ci-deploy'
 alias tam-cms-front='cd ~/tamedia/cd2/code/cms-frontend'
 alias tam-jenkins-lib='cd ~/tamedia/cd2/code/jenkins-shared-libs'
