@@ -25,6 +25,7 @@
     heads = "show-ref --heads"
 [core]
     quotepath = false
+	excludesfile = /home/stefanos/.gitignore_global
 [push]
     default = simple
 
