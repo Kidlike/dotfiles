@@ -48,7 +48,7 @@ function _translate() {
     if [ "$TO_LANG" == "de" ]; then
         echo "$xDe"
     else
-        local xEn=$(\trans -no-warn -e bing -b de:${TO_LANG} "$xDe")
+        local xEn=$(\trans -no-warn -e google -b de:${TO_LANG} "$xDe")
         [ -n "$xEn" ] && echo "$xEn" || echo "$xDe"
     fi
 }
@@ -68,15 +68,13 @@ function main() {
     while read line; do
         local titleDe=$(echo $line | cut -d\@ -f1 | sed 's/^"//g')
         local descDe=$(echo $line | cut -d\@ -f2)
-        local priceInt=$(echo $line | cut -d\@ -f3)
-        local priceExt=$(echo $line | cut -d\@ -f4 | sed 's/"$//g')
+        local priceInt=$(echo $line | cut -d\@ -f3 | sed 's/"$//g')
 
         echo Title: $(_translate "$titleDe")
         echo Description: $(_translate "$descDe")
-        echo Price Int: $priceInt
-        echo Price Ext: $priceExt
+        echo Price: $priceInt
         echo
-    done< <(jq  '.. | select(."@class"?=="tab-content").div.div[] | .h3 + "@" + .p + "@" + .div.dl.dd[0] + "@" + .div.dl.dd[1]' menu.json | sed 's/\\n/ /g')
+    done< <(jq  '.. | select(."@class"?=="tab-content").div.div[] | .h3 + "@" + .p + "@" + .div.dl.dd' menu.json | sed 's/\\n/ /g')
 }
 
 setup "$@"
