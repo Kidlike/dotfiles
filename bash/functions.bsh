@@ -60,8 +60,8 @@ function killprocname() {
     fi
   }
 
-function mvn-rdebug-test() {
-  mvn clean test -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8002 -Xnoagent -Djava.compiler=NONE" -Dcobertura.skip=true -Dfindbugs.skip=true -Dcheckstyle.skip=true -DfailIfNoTests=false -Dtest=$1 -o
+function mvn-debug() {
+  mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000" "$@"
 }
 
 function mvn-go-up() {
@@ -542,18 +542,25 @@ function cms-deploy() {
     kube/charts/${service}
 }
 
+function docker-image-cleanup() {
+  while read imageId; do
+    docker-image-rm $imageId
+  done< <(docker image ls --format "{{.Repository}}:{{.ID}}" | grep -E '^<none>' | cut -d\: -f2)
+}
+
 function docker-image-rm() {
   local imageId=${1:?Please specify docker image id}
+  local image=$(docker image ls -a --format='{{.Repository}}:{{.Tag}} {{.ID}}' | grep $imageId | cut -d\  -f1)
   if [ $(docker image ls -a | grep ${imageId} | wc -l) -gt 1 ]; then
     while read line; do
       local repo=$(echo $line | cut -d\  -f1)
       local tag=$(echo $line | cut -d\  -f2)
-      docker image rm "${repo}:${tag}"
+      docker image rm "${repo}:${tag}" 2>/dev/null
     done < <(docker image ls -a | grep ${imageId} | tr -s ' ' ' ')
   fi
-  if [ $(docker container ls -a | grep -c $imageId) -gt 0 ]; then
+  if [ $(docker container ls -a | grep -E "($image|$imageId)" | wc -l) -gt 0 ]; then
     echo ">> Deleting image containers..."
-    docker container ls -a | grep -i $imageId | cut -d\  -f 1 | xargs docker container rm
+    docker container ls -a | grep -E "($image|$imageId)" | cut -d\  -f 1 | xargs docker container rm --force
   fi
 
   if [ $(docker image ls -a | grep -c $imageId) -gt 0 ]; then
@@ -565,4 +572,29 @@ function docker-image-rm() {
 function cms-get-auth-keystore-password() {
   local namespace=${1:?Please specify deployment environment}
   kubectl -n ${namespace} get secret auth-secrets-${namespace} -o yaml | grep AUTH_KEYSTORE_PASSWORD | sed -E 's/.*: (.*)/\1/' | base64 --decode
+}
+
+function bash-history-restore() {
+  RESTORE_FROM=${1:?Please provide a bash history backup file}
+
+  if [ ! -r $RESTORE_FROM ]; then
+    echo "Cannot read file: $RESTORE_FROM"
+    return 1
+  fi
+
+  history -r $RESTORE_FROM
+  history -w
+  cp ~/.bash_history ~/.bash_history.d/bash_history.bkp
+}
+
+function git-list-tickets() {
+  local from=${1:?Please specify starting git reference}
+  local to=${2:?Please specify destination git reference}
+  # awk '!x[$0]++' --> removes duplicates without changing order
+  git log --pretty=format:'%s' --merges --date-order "${from}..${to}" | grep -Eio 'cd2-[0-9]+'| awk '!x[$0]++'
+}
+
+function minify-js() {
+  local f=${1:?Please provide file to minify inline}
+  cat $f | jq . -c | tee $f
 }

@@ -4,18 +4,14 @@
     b-mv = "branch -m"
     aa = add -A
     co = checkout
-    cp = cherry-pick
+    cherry = cherry-pick
     st = status -sb
-    cl = clone
-    ci = commit
     cm = commit -m
-    co = checkout
     dc = diff --cached
     lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
     last = log -1 --stat
     unstage = reset HEAD --
-    df = "difftool --tool=vimdiff"
-    dfy = "difftool --tool=vimdiff -y"
+    df = "difftool --tool=meld"
     s = "stash show"
     s-save = "stash save"
     s-list = "stash list"
@@ -28,6 +24,5 @@
 	excludesfile = /home/stefanos/.gitignore_global
 [push]
     default = simple
-
 [diff]
     tool = meld

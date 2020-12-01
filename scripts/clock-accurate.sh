@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function _time() {
-  date +"%H:%M:%S.%3N"
+  date +"%H:%M:%S.%3N" | grep -E --color=always -e '^' -e ':00\.0[0-9]+'
 }
 
 while true; do
