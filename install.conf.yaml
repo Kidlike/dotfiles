@@ -15,9 +15,10 @@
     ~/.config/clipit/clipitrc: $WD/clipit/rc
     ~/.vimrc: $WD/vim/vimrc
     ~/.vim: $WD/vim
-    ~/.config/tilda: $WD/tilda
     ~/.gitconfig: $WD/git/gitconfig
     ~/.xbindkeysrc: $WD/xbindkeysrc
+    ~/.tmux/plugins: $WD/tmux/plugins
+    ~/.config/yakuakerc: $WD/yakuakerc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
