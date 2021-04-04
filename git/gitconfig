@@ -26,3 +26,11 @@
     default = simple
 [diff]
     tool = meld
+[gpg]
+	program = gpg2
+[pull]
+	rebase = false
+[url "github-tamedia:DND-IT/"]
+    insteadOf = git@github.com:DND-IT/
+[url "github-kidlike:Kidlike/"]
+    insteadOf = git@github.com:Kidlike/
