@@ -17,6 +17,7 @@
     ~/.vim: $WD/vim
     ~/.gitconfig: $WD/git/gitconfig
     ~/.xbindkeysrc: $WD/xbindkeysrc
+    ~/.Xresources: $WD/Xresources
     ~/.tmux/plugins: $WD/tmux/plugins
     ~/.config/yakuakerc: $WD/yakuakerc
 

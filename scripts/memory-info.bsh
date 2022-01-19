@@ -3,7 +3,6 @@
 oldIFS=$IFS
 IFS=\
 
-
 var_stats=`vmstat -s | tr -s ' ' ' ' | cut -d\  -f 2`;
 
 #echo $var_stats
@@ -21,4 +20,4 @@ echo "used swap   : $var_used_swap"
 
 IFS=$oldIFS
 
-exit 0
+#exit 0

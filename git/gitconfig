@@ -32,5 +32,13 @@
 	rebase = false
 [url "github-tamedia:DND-IT/"]
     insteadOf = git@github.com:DND-IT/
+[url "github-tamedia-stefanos:stefanos-kalantzis/"]
+    insteadOf = git@github.com:stefanos-kalantzis/
+[url "github-tamedia-classroom:dpd-it-classroom/"]
+    insteadOf = git@github.com:dpd-it-classroom/
+[url "github-it-pts:IT-PTS/"]
+    insteadOf = git@github.com:IT-PTS/
 [url "github-kidlike:Kidlike/"]
     insteadOf = git@github.com:Kidlike/
+[init]
+	defaultBranch = master

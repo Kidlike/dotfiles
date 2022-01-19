@@ -477,10 +477,11 @@ function git-rm-local-commits() {
 
 function precmd_tmux_rename() {
   local gitConf="$(git-go-up; pwd)/.git/config"
+  local realDir=$(realpath "$(pwd)")
   if [ -r "$gitConf" ]; then
     projectName=$(grep 'url' "$gitConf" | head -1 | cut -d\= -f2 | cut -d\: -f2 | cut -d\. -f1)
     tmux rename-window " $projectName"
-  elif [ "$(realpath `pwd`)" == "$(realpath ~/.m2/)" ]; then
+  elif [ "${realDir}" == "$(realpath ~/.m2/)" ]; then
     tmux rename-window "☳ ~/.m2/"
   fi
 }
@@ -598,3 +599,14 @@ function minify-js() {
   local f=${1:?Please provide file to minify inline}
   cat $f | jq . -c | tee $f
 }
+
+function jot() {
+  local filename="$HOME/notes/${1}.org"
+  shift
+  if [ -e "$filename" ]; then
+    echo -e "\n* $@" >> "$filename"
+  else
+    echo -e "\n* $@" >> "$HOME/notes/personal.org"
+  fi
+}
+
