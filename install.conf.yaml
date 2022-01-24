@@ -11,14 +11,14 @@
     ~/.bash_logout: $WD/bash/logout.bsh
     ~/.bash_profile: $WD/bash/profile.bsh
     ~/.dircolors: $WD/_libs/dircolors-zenburn/dircolors
-    #~/.oh-my-tmux: $WD/tmux/_libs/oh-my-tmux
     ~/.config/clipit/clipitrc: $WD/clipit/rc
     ~/.vimrc: $WD/vim/vimrc
     ~/.vim: $WD/vim
     ~/.gitconfig: $WD/git/gitconfig
     ~/.xbindkeysrc: $WD/xbindkeysrc
     ~/.Xresources: $WD/Xresources
-    #~/.tmux/plugins: $WD/tmux/plugins
+    ~/.tmux/plugins: $WD/tmux/plugins
+    ~/.tmux.conf: $WD/tmux/tmux.conf
     ~/.config/yakuakerc: $WD/yakuakerc
 
 - shell:

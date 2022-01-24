@@ -23,9 +23,6 @@ ln -sf "$WD" "$HOME/.dotfiles"
 
 mkdir -p "$HOME/.config/gconf/apps" 2>/dev/null
 
-# oh-my-tmux
-#SKIP_BACKUP=1 bash tmux/_libs/oh-my-tmux/install.bsh
-
 export WD="${HOME}/.dotfiles"
 python "${WD}/${DOTBOT_DIR}/${DOTBOT}" --base-directory "${WD}" --config-file "${WD}/${CONFIG}" $@
 
