@@ -25,6 +25,3 @@
 [submodule "tmux/plugins/tmux-themepack"]
 	path = tmux/plugins/tmux-themepack
 	url = git@github.com:jimeh/tmux-themepack.git
-[submodule "tmux/_libs/tpm"]
-	path = tmux/_libs/tpm
-	url = git@github.com:tmux-plugins/tpm.git
