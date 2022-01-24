@@ -22,6 +22,3 @@
 [submodule "tmux/plugins/tmux-copycat"]
 	path = tmux/plugins/tmux-copycat
 	url = git@github.com:tmux-plugins/tmux-copycat.git
-[submodule "tmux/plugins/tmux-themepack"]
-	path = tmux/plugins/tmux-themepack
-	url = git@github.com:jimeh/tmux-themepack.git
