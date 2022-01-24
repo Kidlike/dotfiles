@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -n "$DEBUG" ] && set -x
+
 set -eu -o pipefail
 
 WD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -14,9 +16,6 @@ if [ -e "$HOME/.dotfiles" -a ! -L "$HOME/.dotfiles" ]; then
 	exit 1;
 fi
 
-PYTHON="python"
-[ $(which python2) ] && PYTHON="python2"
-
 pip-safe-install PyYaml
 
 rm -f "$HOME/.dotfiles"
@@ -25,8 +24,8 @@ ln -sf "$WD" "$HOME/.dotfiles"
 mkdir -p "$HOME/.config/gconf/apps" 2>/dev/null
 
 # oh-my-tmux
-SKIP_BACKUP=1 bash tmux/_libs/oh-my-tmux/install.bsh
+#SKIP_BACKUP=1 bash tmux/_libs/oh-my-tmux/install.bsh
 
 export WD="${HOME}/.dotfiles"
-${PYTHON} "${WD}/${DOTBOT_DIR}/${DOTBOT}" --base-directory "${WD}" --config-file "${WD}/${CONFIG}" $@
+python "${WD}/${DOTBOT_DIR}/${DOTBOT}" --base-directory "${WD}" --config-file "${WD}/${CONFIG}" $@
 

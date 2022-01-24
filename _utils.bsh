@@ -8,7 +8,7 @@ function dnf-safe-install() {
 }
 
 function pip-safe-install() {
-        pip show $1 >/dev/null 2>&1
+        pip show $1 >/dev/null
         if [ $? -ne 0 ]; then
                 sudo pip install $1
         fi

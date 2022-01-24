@@ -3,15 +3,13 @@ Frames=0
 
 [Appearance]
 BackgroundColorOpacity=25
-Skin=Yakuake-Breath2-Dark-Minimal-1.0
-SkinInstalledWithKns=true
-Translucency=true
+HideSkinBorders=true
 
 [Behavior]
 RememberFullscreen=true
 
 [Desktop Entry]
-DefaultProfile=TMUX.profile
+DefaultProfile=yakuake.profile
 
 [Dialogs]
 FirstRun=false
@@ -23,6 +21,11 @@ DP-0 Width 3840=700
 [Favorite Profiles]
 Favorites=TMUX.profile
 
+[KFileDialog Settings]
+detailViewIconSize=16
+
 [Window]
+Height=60
 KeepOpen=false
 ShowTabBar=false
+ShowTitleBar=false
