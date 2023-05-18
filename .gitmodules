@@ -16,3 +16,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
+[submodule "tmux/plugins/dracula"]
+	path = tmux/plugins/dracula
+	url = https://github.com/dracula/tmux.git
