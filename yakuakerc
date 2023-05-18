@@ -1,5 +1,6 @@
 [Animation]
 Frames=0
+UseWMAssist=false
 
 [Appearance]
 BackgroundColorOpacity=25
@@ -26,6 +27,6 @@ detailViewIconSize=16
 
 [Window]
 Height=60
-KeepOpen=false
 ShowTabBar=false
 ShowTitleBar=false
+Width=100
