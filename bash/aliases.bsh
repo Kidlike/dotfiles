@@ -29,6 +29,7 @@ alias k='kubectl'
 alias kube='kubectl'
 alias please='sudo'
 alias ssh-github-fingerprint='ssh-keygen -l -E md5 -f'
+alias pipe-audio-tardis='PULSE_SERVER=tcp:192.168.1.101'
 
 # color_prompt is set from ~/.bashrc
 alias ls='ls -hF --color=auto --group-directories-first'
