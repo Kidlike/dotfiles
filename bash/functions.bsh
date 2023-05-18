@@ -610,3 +610,11 @@ function jot() {
   fi
 }
 
+function cdpath() {
+  local path=$(xclip -o)
+  if [ -d "$path" ]; then
+    cd "$path"
+  else
+    cd "$(dirname "$path")"
+  fi
+}
