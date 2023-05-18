@@ -382,6 +382,17 @@ function git-branch-prune() {
   done
 }
 
+function git-branch-report() {
+  local hasConflicts
+  echo 'branch name,commits from master,has merge conflicts'
+  git branch --remotes | grep -v master | while read -r b; do 
+    git merge --no-commit --no-ff $b >/dev/null 2>&1
+    hasConflicts=$?
+    git merge --abort >/dev/null 2>&1
+    echo $b,$(git rev-list --count $b..origin/master),$hasConflicts; 
+  done
+}
+
 function treel() {
   tree -C "$@" | less -R
 }
