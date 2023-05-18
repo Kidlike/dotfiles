@@ -30,6 +30,8 @@
 	program = gpg2
 [pull]
 	rebase = false
+[url "github-pts:tx-pts-dai/"]
+    insteadOf = git@github.com:tx-pts-dai/
 [url "github-tamedia:DND-IT/"]
     insteadOf = git@github.com:DND-IT/
 [url "github-tamedia-stefanos:stefanos-kalantzis/"]
