@@ -60,56 +60,6 @@ alias mvn-dirty-package="mvn-dirty -DskipTests -Dmaven.test.skip=true -Dcargo.ma
 alias mvn-build-n-deploy='mvn-dirty-install -o && mvn-tomcat-deploy'
 alias mvn-pitest='mvn-dirty clean test site -Dpitest'
 alias mvntail='mtail -cS maven'
-alias cdmvn='cdpath; mvn-go-up'
-alias cdgit='cdpath; git-go-up'
-
-if command -v svn >/dev/null 2>&1; then
-    alias cdsvn='cdpath; svn-go-up;'
-    alias svn-cleanup-all='while read d; do cd $d/..; svn cleanup; cd - >/dev/null 2>&1; done< <(find . -type d -name ".svn" )'
-    alias svn-login='. svn-login'
-    alias svn-logout='. svn-logout'
-fi
-
-if [ "$(hostname)" == "limk-8h7f5z1.iconcr.com" ]; then
-    alias ssh-software-test-1='tmuxp load -y ~/.tmuxp/ssh-software-test-1.yml'
-    alias ssh-software-test-1--synced='tmuxp load -y ~/.tmuxp/ssh-software-test-1--synced.yml'
-	alias sp22='cd ~/work/projects/sp0022/trunk/'
-    alias sp22-dev='teamocil --here sp22-dev'
-	alias sp00='cd ~/work/projects/sp0000/trunk/'
-	alias sp12='cd ~/work/projects/sp0012/trunk/'
-	alias sp12-branches='cd ~/work/projects/sp0012/branches'
-	alias sp12-docrepo='cd ~/work/projects/sp0012/trunk/document-repository'
-	alias sp18='cd ~/work/projects/sp0018/trunk/'
-    alias sp12-dev='tmuxp load -y ~/.tmuxp/sp12-dev.yml'
-	alias sp25='cd ~/work/projects/sp0025/trunk/'
-    alias sp25-dev='tmuxp load -y ~/.tmuxp/sp25-dev.yml'
-	alias firefox-uat='firefox -profile ~/work/projects/SP0012_trunk/uat/automatic/uat_services/src/robot/resource/firefoxProfiles/firefoxWithFirebug'
-	alias build-docrepo-ui-local='mvn-dirty-install -Plocal -o && ./dev-tomcat-deploy.bsh && sync && notify-speaker-command-done'
-	alias build-docrepo-ui-test2='mvn-dirty-install -o -Djslib-url="/static-test2/js-libraries" && sync && notify-speaker-command-done'
-	if [ -d ~/.config/pssh ]; then
-		while read f; do
-			alias "pssh-$f"="pssh -h ~/.config/pssh/$f"
-			alias "pscp.pssh-$f"="pscp.pssh -h ~/.config/pssh/$f"
-		done < <(\ls -1 ~/.config/pssh/)
-	fi
-
-    alias rdesktop-xymo-production-01='rdesktop -d iconcr -u KalantzisS_admin eu-xymoapp-01'
-    alias rdesktop-xymo-production-02='rdesktop -d iconcr -u KalantzisS_admin eu-xymoapp-02'
-    alias tomcat-start='sudo service fc-tomcat start'
-    alias tomcat-debug='sudo service fc-tomcat debug'
-    alias tomcat-stop='sudo service fc-tomcat stop'
-    alias tomcat-status='sudo service fc-tomcat status'
-    alias tomcat-version='sudo service fc-tomcat version'
-    alias tomcat-kill='kill-tomcat'
-    alias tomcat-list-webapps='find /opt/tomcat/webapps/ -maxdepth 1 -type d -regex '.*[^/]$' | cut -d\/ -f5 | sort'
-    alias tomcat-tail='tail -0f /opt/tomcat/logs/catalina.out'
-    alias tomcat-less='less +F /opt/tomcat/logs/catalina.out'
-    alias tomcat-less-clean='echo > /opt/tomcat/logs/catalina.out; less +F /opt/tomcat/logs/catalina.out'
-fi
-
-#if [ $(lsb_release -d | grep -ic ubuntu) -ge 1 ]; then
-#	alias apt-list-ppas='apt-cache policy |grep http |awk "{print $2 $3}" |sort -u'
-#fi
 
 alias vagrant-remove-all-boxes="vagrant box list | cut -f 1 -d ' ' | xargs -L 1 vagrant box remove -f"
 alias memory-release-inactive='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null'
