@@ -64,6 +64,7 @@ alias mvntail='mtail -cS maven'
 alias vagrant-remove-all-boxes="vagrant box list | cut -f 1 -d ' ' | xargs -L 1 vagrant box remove -f"
 alias memory-release-inactive='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null'
 alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg; sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg'
+alias kernel-lock='sudo dnf versionlock add $(rpm -qa | grep -E "^kernel.*$(uname -r)")'
 
 alias tam='cd ~/tx/repos/dnd-it/'
 alias tam-cms='cd ~/tx/repos/dnd-it/cms'
