@@ -28,7 +28,6 @@ alias rdesktop='rdesktop -p - -g 1600x900'
 alias k='kubectl'
 alias kube='kubectl'
 alias please='sudo'
-alias bluetoothctl-connect-sony='bluetoothctl connect 38:18:4C:3F:07:10'
 alias ssh-github-fingerprint='ssh-keygen -l -E md5 -f'
 
 # color_prompt is set from ~/.bashrc
