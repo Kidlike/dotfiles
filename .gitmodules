@@ -7,9 +7,6 @@
 [submodule "_libs/dotbot"]
 	path = _libs/dotbot
 	url = git@github.com:anishathalye/dotbot.git
-[submodule "_libs/nord-dircolors"]
-	path = _libs/nord-dircolors
-	url = git@github-kidlike:arcticicestudio/nord-dircolors.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
