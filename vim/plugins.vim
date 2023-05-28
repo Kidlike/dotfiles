@@ -46,9 +46,9 @@ filetype plugin indent on
     set termguicolors
     set t_ut=
   endif
-  set background=dark
+  "set background=light
   colorscheme onedark
-  "colorscheme oneplus
+  "colorscheme github
   "colorscheme wombat
   "colorscheme zenburn
 
