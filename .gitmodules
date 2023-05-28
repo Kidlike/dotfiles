@@ -4,9 +4,6 @@
 [submodule "bash/_libs/fzf"]
 	path = bash/_libs/fzf
 	url = git@github.com:junegunn/fzf.git
-[submodule "_libs/dircolors-zenburn"]
-	path = _libs/dircolors-zenburn
-	url = git@github.com:Kidlike/dircolors-zenburn.git
 [submodule "_libs/dotbot"]
 	path = _libs/dotbot
 	url = git@github.com:anishathalye/dotbot.git
