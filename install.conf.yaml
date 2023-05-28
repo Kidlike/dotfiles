@@ -18,6 +18,8 @@
     ~/.tmux/plugins: $WD/tmux/plugins
     ~/.tmux.conf: $WD/tmux/tmux.conf
     ~/.config/yakuakerc: $WD/yakuakerc
+    ~/.local/share/dark-mode.d: $WD/darkman/dark-mode.d
+    ~/.local/share/light-mode.d: $WD/darkman/light-mode.d
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
