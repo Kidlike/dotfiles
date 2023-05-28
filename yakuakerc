@@ -10,7 +10,7 @@ HideSkinBorders=true
 RememberFullscreen=true
 
 [Desktop Entry]
-DefaultProfile=yakuake.profile
+DefaultProfile=Wombat.profile
 
 [Dialogs]
 FirstRun=false
