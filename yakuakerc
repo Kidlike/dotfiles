@@ -7,6 +7,7 @@ BackgroundColorOpacity=25
 HideSkinBorders=true
 
 [Behavior]
+OpenAfterStart=false
 RememberFullscreen=true
 
 [Desktop Entry]
@@ -18,9 +19,6 @@ FirstRun=false
 [DownloadDialog Settings]
 DP-0 Height 2160=591
 DP-0 Width 3840=700
-
-[Favorite Profiles]
-Favorites=TMUX.profile
 
 [KFileDialog Settings]
 detailViewIconSize=16
