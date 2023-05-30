@@ -1,9 +1,7 @@
 [Animation]
-Frames=0
-UseWMAssist=false
+Frames=15
 
 [Appearance]
-BackgroundColorOpacity=25
 HideSkinBorders=true
 
 [Behavior]
@@ -27,4 +25,3 @@ detailViewIconSize=16
 Height=60
 ShowTabBar=false
 ShowTitleBar=false
-Width=100
