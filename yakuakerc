@@ -3,13 +3,11 @@ Frames=15
 
 [Appearance]
 HideSkinBorders=true
+Skin=plastik_dark
 
 [Behavior]
-OpenAfterStart=false
+OpenAfterStart=true
 RememberFullscreen=true
-
-[Desktop Entry]
-DefaultProfile=Wombat.profile
 
 [Dialogs]
 FirstRun=false

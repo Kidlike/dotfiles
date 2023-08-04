@@ -1,4 +1,4 @@
 #!/bin/bash
 
-plasma-apply-desktoptheme Nordic-darker
-plasma-apply-colorscheme NordicDarker
+plasma-apply-desktoptheme Aritim-Dark-Flat-Blur
+plasma-apply-colorscheme AritimDark

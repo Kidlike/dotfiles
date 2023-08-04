@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $(gsettings get org.gnome.desktop.interface gtk-theme) =~ "Nordic-darker" ]]; then
+if [[ $(gsettings get org.gnome.desktop.interface gtk-theme) =~ "Aritim-Dark-GTK" ]]; then
   echo '🕶️'
 else
   echo '👓'
