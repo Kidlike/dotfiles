@@ -2,7 +2,9 @@
 
 # https://gogh-co.github.io/Gogh/
 
-qdbus org.kde.yakuake /Sessions/1 setProfile "Wombat"
+if [ $(pidof yakuake) ]; then
+    qdbus org.kde.yakuake /Sessions/1 setProfile "Wombat"
+fi
 
 KONSOLEPIDS=($(pidof konsole))
 for i in "${KONSOLEPIDS[@]}"; do

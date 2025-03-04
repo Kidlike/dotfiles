@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function help-curl-data() {
+  echo '--data @<(cat <<EOF'
+  echo '_payload_'
+  echo 'EOF'
+  echo ')'
+}
+
 function pwd-physical() {
   logical=$(builtin pwd -L)
   physical=$(builtin pwd -P)
@@ -554,6 +561,10 @@ function cms-deploy() {
     kube/charts/${service}
 }
 
+function docker-container-cleanup() {
+  docker container rm $(docker container ls -a | grep Exited | awk '{print $1}')
+}
+
 function docker-image-cleanup() {
   while read imageId; do
     docker-image-rm $imageId
@@ -628,4 +639,24 @@ function cdpath() {
   else
     cd "$(dirname "$path")"
   fi
+}
+
+function garmin-scale-fit() {
+  local kg=$1
+  local fat_p=$2
+  local water_p=$3
+  local muscle_p=$4
+  local bone_p=$5
+  local day=$6
+
+  if [ $# -lt 5 ]; then
+    echo 'garmin-scale-fit <kg> <fat> <water> <muscle> <bone> [<day : yyyy-MM-dd>]'
+    return 1
+  fi
+
+  local muscle=$(echo "scale=1; $kg * $muscle_p / 100" | bc)
+  local water=$(echo "scale=1; $kg * $water_p / 100 - $muscle" | bc)
+  local dry_bone=$(echo "scale=1; $kg * $bone_p / 100 - $water" | bc)
+  
+  weight2fit -w $kg -bf $fat_p -bw $water_p -mm $muscle -bm $dry_bone --timestamp ${day:-$(date +%Y-%m-%d)}
 }

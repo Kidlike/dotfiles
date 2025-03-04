@@ -2,6 +2,9 @@
 
 # User specific aliases and functions
 alias ..='cd ..'
+alias java-switch='sdk use java $(sdk list java | grep -E "(local only|installed)" | fzf | cut -d\| -f 6 | tr -d " ")'
+alias rs='ssh -t zh4747@zh4747.rsync.net'
+alias glow='glow -p'
 alias tree='tree -lC'
 alias l='ls'
 alias la='ls -a'
@@ -30,6 +33,7 @@ alias kube='kubectl'
 alias please='sudo'
 alias ssh-github-fingerprint='ssh-keygen -l -E md5 -f'
 alias pipe-audio-tardis='PULSE_SERVER=tcp:192.168.1.101'
+alias count-group-by-column='echo "Counting occurences of each text in the 4th column: \"... | cut -d, -f4 | sort | uniq -c | sort -nr\""'
 
 # color_prompt is set from ~/.bashrc
 alias ls='ls -hF --color=auto --group-directories-first'

@@ -1,35 +1,38 @@
 [alias]
-    b  = branch
-    ba  = branch -a
-    b-mv = "branch -m"
-    aa = add -A
-    co = checkout
-    cherry = cherry-pick
-    st = status -sb
-    cm = commit -m
-    dc = diff --cached
+    # print these aliases
+    h  = "!f() { git config --get-regexp ^alias | sed 's/^alias\\.//' | grep -Ev '^h' | sed 's/ /\t/' | column -s'\t' -t; }; f"
+    # list branches
+    b  = "!f() { git branch \"$@\" --format='%(refname:lstrip=2)|%(authorname)|%(contents:subject)' | column -s '|' -t; }; f"
+    b-switch = "!f() { git checkout $(git b | fzf | awk '{print $1}'); }; f"
+    aa = "add -A"
+    co = "checkout"
+    cp = "cherry-pick"
+    st = "status -sb"
+    cm = "commit -m"
+    rv = "remote -v"
+    # diff with master
+    dm = "diff --staged --merge-base master"
+    # log tree with lines
     lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
-    last = log -1 --stat
-    unstage = reset HEAD --
+    last = "log -1 --stat"
     df = "difftool --tool=meld"
     s = "stash show"
     s-save = "stash save"
     s-list = "stash list"
-    s-show = "!f() { git stash show stash^{/$*}; }; f"
-    s-show-p = "!f() { git stash show stash^{/$*} -p; }; f"
+    s-show = "!f() { git stash show \"$@\" stash^{/$*}; }; f"
     s-apply = "!f() { git stash apply stash^{/$*}; }; f"
-    heads = "show-ref --heads"
 [core]
     quotepath = false
-	excludesfile = /home/stefanos/.gitignore_global
+    excludesfile = /home/stefanos/.gitignore_global
 [push]
     default = simple
+    autoSetupRemote = true
 [diff]
     tool = meld
 [gpg]
-	program = gpg2
+    program = gpg2
 [pull]
-	rebase = false
+    rebase = false
 [url "github-pts:tx-pts-dai/"]
     insteadOf = git@github.com:tx-pts-dai/
 [url "github-tamedia:DND-IT/"]
@@ -43,9 +46,9 @@
 [url "github-kidlike:Kidlike/"]
     insteadOf = git@github.com:Kidlike/
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f

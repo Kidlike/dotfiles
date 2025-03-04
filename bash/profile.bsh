@@ -11,7 +11,8 @@ elif [ "$TERM" == "urxvt" ]; then
 fi
 
 export EDITOR='vim'
-export MAVEN_OPTS='-Xms256M -Xmx1536M'
+export MAVEN_OPTS='-Xms256M -Xmx2048M'
+#export MAVEN_OPTS='-Xms256M -Xmx2048M -XX:+UseZGC -XX:+FlightRecorder -XX:StartFlightRecording=duration=200s,filename=mvn-flight.jfr'
 #export IDEA_JDK="${HOME}/.sdkman/candidates/java/current"
 export IDEA_JDK="/opt/intellij/latest/jre64"
 
