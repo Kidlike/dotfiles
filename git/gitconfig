@@ -3,9 +3,9 @@
     h  = "!f() { git config --get-regexp ^alias | sed 's/^alias\\.//' | grep -Ev '^h' | sed 's/ /\t/' | column -s'\t' -t; }; f"
     # list branches
     b  = "!f() { git branch \"$@\" --format='%(refname:lstrip=2)|%(authorname)|%(contents:subject)' | column -s '|' -t; }; f"
-    b-switch = "!f() { git checkout $(git b | fzf | awk '{print $1}'); }; f"
     aa = "add -A"
     co = "checkout"
+    cos = "!f() { git checkout $(git b | fzf | awk '{print $1}'); }; f"
     cp = "cherry-pick"
     st = "status -sb"
     cm = "commit -m"

@@ -4,7 +4,6 @@
 alias ..='cd ..'
 alias java-switch='sdk use java $(sdk list java | grep -E "(local only|installed)" | fzf | cut -d\| -f 6 | tr -d " ")'
 alias rs='ssh -t zh4747@zh4747.rsync.net'
-alias glow='glow -p'
 alias tree='tree -lC'
 alias l='ls'
 alias la='ls -a'

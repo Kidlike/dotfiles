@@ -428,6 +428,14 @@ function kube-logs() {
   kubectl logs -f $(kubectl get pods | grep "^$search" | awk '{print $1}' | head -1)
 }
 
+function math-avg() {
+  local nums=${*:-$(</dev/stdin)}
+  local expr=$(echo $nums | tr ' ' '+')
+  local count=$(echo $expr | grep -o '+' | grep -c '+')
+  count=$((count + 1))
+  echo "scale=2; ($expr)/$count" | bc
+}
+
 function math-sum() {
   local nums=${*:-$(</dev/stdin)}
   echo $nums | tr ' ' '+' | bc
@@ -568,7 +576,7 @@ function docker-container-cleanup() {
 function docker-image-cleanup() {
   while read imageId; do
     docker-image-rm $imageId
-  done< <(docker image ls --format "{{.Repository}}:{{.ID}}" | grep -E '^<none>' | cut -d\: -f2)
+  done< <(docker image ls --format "{{.Repository}}:{{.Tag}}:{{.ID}}" | grep '<none>:' | cut -d\: -f3)
 }
 
 function docker-image-rm() {
@@ -598,16 +606,13 @@ function cms-get-auth-keystore-password() {
 }
 
 function bash-history-restore() {
-  RESTORE_FROM=${1:?Please provide a bash history backup file}
-
-  if [ ! -r $RESTORE_FROM ]; then
-    echo "Cannot read file: $RESTORE_FROM"
-    return 1
+  largestBackup=$(ls -1S ~/.bash_history.d/currents/* | head -1)
+  if [[ -r "$largestBackup" ]]; then
+    cat "$largestBackup" > ~/.bash_history
+    history -r
+  else
+    echo ">> Implement me: restore from ~/.bash_history.d/backups/"
   fi
-
-  history -r $RESTORE_FROM
-  history -w
-  cp ~/.bash_history ~/.bash_history.d/bash_history.bkp
 }
 
 function git-list-tickets() {
@@ -659,4 +664,9 @@ function garmin-scale-fit() {
   local dry_bone=$(echo "scale=1; $kg * $bone_p / 100 - $water" | bc)
   
   weight2fit -w $kg -bf $fat_p -bw $water_p -mm $muscle -bm $dry_bone --timestamp ${day:-$(date +%Y-%m-%d)}
+}
+
+gh-browse() {
+  local org=${1:-dnd-it}
+  gh repo list $org -L 100 | column -t -s$'\t' | fzf | awk '{print $1}' | xargs -I {} gh repo view --web {}
 }
