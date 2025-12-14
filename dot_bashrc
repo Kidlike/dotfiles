@@ -38,6 +38,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [ -z "$PS1" ] && return
 
 export EDITOR=vim
+export MAVEN_OPTS='-Xms256M -Xmx2048M'
 
 # starship.rs
 eval "$(starship init bash)"
