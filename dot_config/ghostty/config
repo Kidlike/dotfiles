@@ -58,4 +58,4 @@ quick-terminal-animation-duration=0.2
 #quick-terminal-autohide=true
 quick-terminal-position=bottom
 # Tmux attach
-command="tmux attach-session"
+command=tmux-restore.sh
