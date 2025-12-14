@@ -1,0 +1,14 @@
+[Unit]
+Description=Scale down docker-swarm services before system shutdown
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/true
+ExecStop=/home/stefanos/repos/kidlike/dotfiles/scripts/docker-pre-shutdown.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+

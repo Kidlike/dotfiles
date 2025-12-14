@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@lemonadejs/datagrid/dist/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@lemonadejs/datagrid/dist/style.min.css"/>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .droparea {
+        height: 30vh;
+        background-color: rgba(217, 194, 178, 0.66);
+        border-radius: 20px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5em;
+
+        font-size: 80px;
+        text-transform: uppercase;
+        font-family: 'Gambetta', serif;
+        letter-spacing: -3px;
+        transition: 700ms ease;
+        font-variation-settings: "wght" 311;
+        outline: none;
+        text-align: center;
+
+        cursor: default;
+    }
+
+    .gridarea {
+        margin: 0.5em;
+        width: 100%;
+
+        .lm-data-grid-card {
+            display: block;
+        }
+    }
+
+    .gridarea table {
+        table-layout: auto;
+        width: 100%;
+    }
+</style>
+
+<body>
+
+<div class="container">
+    <div class="droparea" id="dropitlikeitshot">drop area</div>
+    <div class="gridarea" id='output'></div>
+</div>
+
+<script>
+    let dropArea = document.getElementById("dropitlikeitshot")
+
+    dropArea.addEventListener("dragenter", function (ev) {
+        ev.preventDefault()
+        dropArea.style.letterSpacing = '3px'
+    })
+
+    dropArea.addEventListener("dragend", function (ev) {
+        ev.preventDefault()
+    })
+
+    dropArea.addEventListener("dragleave", function (ev) {
+        ev.preventDefault()
+        dropArea.style.letterSpacing = 'normal'
+    })
+
+    dropArea.addEventListener("dragover", function (ev) {
+        ev.preventDefault()
+    })
+
+    dropArea.addEventListener("drop", ev => {
+        ev.preventDefault()
+        dropArea.style.letterSpacing = 'normal'
+
+        const items = []
+        for (const item of ev.dataTransfer.items) {
+            const entry = {
+                kind: item.kind,
+                type: item.type
+            }
+
+            if (entry.kind === 'string') {
+                item.getAsString(str => {
+                    entry.content = str
+                })
+            }
+
+            items.push(entry)
+        }
+
+        new Datagrid(document.getElementById('output'), {
+            data: items,
+            columns: [{
+                name: 'kind', title: 'Kind', align: 'left'
+            }, {
+                name: 'type', title: 'Type', align: 'left'
+            }, {
+                name: 'content', title: 'Content', align: 'left'
+            }]
+        })
+    })
+</script>
+
+</body>
+</html>
