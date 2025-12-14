@@ -1,0 +1,54 @@
+[alias]
+    # print these aliases
+    h  = "!f() { git config --get-regexp ^alias | sed 's/^alias\\.//' | grep -Ev '^h' | sed 's/ /\t/' | column -s'\t' -t; }; f"
+    # list branches
+    b  = "!f() { git branch \"$@\" --format='%(refname:lstrip=2)|%(authorname)|%(contents:subject)' | column -s '|' -t; }; f"
+    aa = "add -A"
+    co = "checkout"
+    cos = "!f() { git checkout $(git b | fzf | awk '{print $1}'); }; f"
+    cp = "cherry-pick"
+    st = "status -sb"
+    cm = "commit -m"
+    rv = "remote -v"
+    # diff with master
+    dm = "diff --staged --merge-base master"
+    # log tree with lines
+    lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all"
+    last = "log -1 --stat"
+    df = "difftool --tool=meld"
+    s = "stash show"
+    s-save = "stash save"
+    s-list = "stash list"
+    s-show = "!f() { git stash show \"$@\" stash^{/$*}; }; f"
+    s-apply = "!f() { git stash apply stash^{/$*}; }; f"
+[core]
+    quotepath = false
+    excludesfile = /home/stefanos/.gitignore_global
+[push]
+    default = simple
+    autoSetupRemote = true
+[diff]
+    tool = meld
+[gpg]
+    program = gpg2
+[pull]
+    rebase = false
+[url "github-pts:tx-pts-dai/"]
+    insteadOf = git@github.com:tx-pts-dai/
+[url "github-tamedia:DND-IT/"]
+    insteadOf = git@github.com:DND-IT/
+[url "github-tamedia-stefanos:stefanos-kalantzis/"]
+    insteadOf = git@github.com:stefanos-kalantzis/
+[url "github-tamedia-classroom:dpd-it-classroom/"]
+    insteadOf = git@github.com:dpd-it-classroom/
+[url "github-it-pts:IT-PTS/"]
+    insteadOf = git@github.com:IT-PTS/
+[url "github-kidlike:Kidlike/"]
+    insteadOf = git@github.com:Kidlike/
+[init]
+    defaultBranch = master
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
