@@ -58,4 +58,4 @@ quick-terminal-animation-duration=0.2
 #quick-terminal-autohide=true
 quick-terminal-position=bottom
 # Tmux attach
-command=/home/stefanos/ghostty-tmux.sh
+command="tmux attach-session"
