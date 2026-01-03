@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 Type=oneshot
 ExecStart=/bin/true
-ExecStop=/home/stefanos/repos/kidlike/dotfiles/scripts/docker-pre-shutdown.sh
+ExecStop=/usr/local/bin/docker-pre-shutdown.sh
 RemainAfterExit=yes
 
 [Install]
