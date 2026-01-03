@@ -23,6 +23,7 @@ $kotlin\
 $haskell\
 $python\
 [](fg:color_blue bg:color_bg3)\
+$kubernetes\
 $docker_context\
 $conda\
 $pixi\
@@ -51,6 +52,19 @@ style = "bg:color_orange fg:color_fg0"
 
 [os.symbols]
 Fedora = "󰣛"
+
+[kubernetes]
+disabled = false
+style = "bg:color_bg3"
+detect_env_vars= [ 'KUBECONFIG' ]
+format = '[$symbol $context / $namespace]($style)'
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:eks:[^:]+:\\d*:cluster/(?P<cluster>.*prod.*)"
+context_alias = "$cluster"
+style = "bg:color_bg3 fg:color_orange"
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:eks:[^:]+:\\d*:cluster/(?P<cluster>.*)"
+context_alias = "$cluster"
 
 [username]
 show_always = true
