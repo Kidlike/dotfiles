@@ -27,4 +27,5 @@ chezmoi init --apply Kidlike
 - the whole thing should be very fast (no slow configs/plugins allowed)
 - tmux plugins must be available through TPM
 - font: JetBrainsMono (nerdfonts)
+- non-free codecs guide: https://rpmfusion.org/Howto/Multimedia
 
