@@ -28,4 +28,8 @@ chezmoi init --apply Kidlike
 - tmux plugins must be available through TPM
 - font: JetBrainsMono (nerdfonts)
 - non-free codecs guide: https://rpmfusion.org/Howto/Multimedia
+- issue: certain keys don't repeat when held down (multiple apps)
+   - discussion: https://github.com/ghostty-org/ghostty/discussions/9725
+   - fix 1/2: sudo dnf install fcitx5
+   - fix 2/2: select fcitx5 as a virtual keyboard in system settings
 
