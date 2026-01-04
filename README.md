@@ -3,7 +3,7 @@
 ```shell
 sudo dnf copr enable scottames/ghostty
 sudo dnf copr enable atim/starship
-sudo dnf install ghostty starship chezmoi fzf xclip bat zoxide git cargo ripgrep awscli kubernetes1.35-client glow jq yq
+sudo dnf install ghostty starship chezmoi fzf xclip bat zoxide git cargo ripgrep awscli kubernetes1.35-client glow jq yq just
 cargo install eza
 cargo install kubie
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
