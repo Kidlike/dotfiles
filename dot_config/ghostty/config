@@ -53,8 +53,8 @@ scrollback-limit = 50000
 # Quake-style
 keybind = global:f1=toggle_quick_terminal
 quick-terminal-size=100%,100%
-window-vsync=false
-quick-terminal-animation-duration=0.2
+window-vsync=true
+quick-terminal-animation-duration=0
 #quick-terminal-autohide=true
 quick-terminal-position=bottom
 # Tmux attach
