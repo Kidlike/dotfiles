@@ -33,4 +33,6 @@ chezmoi init --apply Kidlike
    - fix 1/2: sudo dnf install fcitx5
    - fix 2/2: select fcitx5 as a virtual keyboard in system settings
 - ollama/nvidia setup:
-   - sudo dnf install xorg-x11-drv-nvidia-cuda nvtop ollama
+   - sudo dnf install xorg-x11-drv-nvidia-cuda nvtop
+   - curl -fsSL https://ollama.com/install.sh | sh
+
