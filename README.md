@@ -32,4 +32,5 @@ chezmoi init --apply Kidlike
    - discussion: https://github.com/ghostty-org/ghostty/discussions/9725
    - fix 1/2: sudo dnf install fcitx5
    - fix 2/2: select fcitx5 as a virtual keyboard in system settings
-
+- ollama/nvidia setup:
+   - sudo dnf install xorg-x11-drv-nvidia-cuda nvtop ollama
