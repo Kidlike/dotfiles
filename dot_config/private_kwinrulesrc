@@ -14,15 +14,26 @@ wmclass=ghostty com.mitchellh.ghostty
 wmclasscomplete=true
 wmclassmatch=1
 
+[0e693de1-1bd4-434b-9f38-c6e46e8369fb]
+Description=Window settings for Meet PIP
+above=true
+aboverule=3
+title=^Meet - .*
+titlematch=3
+types=1
+wmclass=brave brave-browser
+wmclasscomplete=true
+wmclassmatch=1
+
 [General]
-count=3
-rules=cdfbdbd3-37d1-43cc-91b8-2a3714228066,b5967815-1eaf-42e3-adcf-3bfa9e638100,0e1c8f7e-049b-4691-bb4a-ad02b696ae8a
+count=4
+rules=0e693de1-1bd4-434b-9f38-c6e46e8369fb,cdfbdbd3-37d1-43cc-91b8-2a3714228066,b5967815-1eaf-42e3-adcf-3bfa9e638100,0e1c8f7e-049b-4691-bb4a-ad02b696ae8a
 
 [b5967815-1eaf-42e3-adcf-3bfa9e638100]
 Description=Window settings for Slack
 desktopfile=com.slack.Slack.desktop
 desktopfilerule=2
-desktops=14ace322-1216-4333-9389-ef84745f11e4
+desktops=be6875cc-0187-41e9-8d07-2622e9ee2ae1
 desktopsrule=2
 types=1
 wmclass=slack Slack
@@ -31,7 +42,7 @@ wmclassmatch=1
 
 [cdfbdbd3-37d1-43cc-91b8-2a3714228066]
 Description=Window settings for im.riot.Riot
-desktops=9f21aeb1-7804-4f47-9e9c-ef0970d3b805
+desktops=08a8f70e-ad30-4729-b0cc-4929bd6d491c
 desktopsrule=2
 title=Element | snips
 types=1
