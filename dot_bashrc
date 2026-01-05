@@ -44,12 +44,16 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 export EDITOR=vim
 export MAVEN_OPTS='-Xms256M -Xmx2048M'
+export GIT_HOOK_POST_CHECKOUT_MODE='clean'
 
 # starship.rs
 eval "$(starship init bash)"
 
-# atuin.sh
+# atuin (for ctrl-r)
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash --disable-up-arrow)"
+
+# fzf (for ctrl-t)
+FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
 
