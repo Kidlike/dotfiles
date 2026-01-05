@@ -5,7 +5,7 @@
     b  = "!f() { git branch \"$@\" --format='%(refname:lstrip=2)|%(authorname)|%(contents:subject)' | column -s '|' -t; }; f"
     aa = "add -A"
     co = "checkout"
-    cos = "!f() { git checkout $(git b | fzf | awk '{print $1}'); }; f"
+    cos = "!f() { git checkout $(git b \"$@\" | fzf | awk '{print $1}' | awk -F/ '{print $2}'); }; f"
     cp = "cherry-pick"
     st = "status -sb"
     cm = "commit -m"
