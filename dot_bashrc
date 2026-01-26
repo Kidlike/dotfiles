@@ -45,6 +45,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export EDITOR=vim
 export MAVEN_OPTS='-Xms256M -Xmx2048M'
 export GIT_HOOK_POST_CHECKOUT_MODE='clean'
+export AWS_PROFILE='dev'
 
 # starship.rs
 eval "$(starship init bash)"
