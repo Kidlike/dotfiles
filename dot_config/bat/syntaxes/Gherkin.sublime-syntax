@@ -1,0 +1,126 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+file_extensions:
+  - feature
+scope: text.gherkin
+contexts:
+  main:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character
+    - match: '"'
+      scope: punctuation.definition.string.begin.gherkin
+      push: double_quoted_string
+
+    - match: |-
+        (?ix)^\s*
+        (
+          feature
+        | background
+        | scenario(?:\s+outline)?
+        | given
+        | when
+        | and
+        | then
+        | but
+        | examples
+        )
+        \b
+        (:(?!$))?
+      captures:
+        1: keyword.control.flow.gherkin
+        2: punctuation.section.group.gherkin
+
+    - match: ^\s*(\*)
+      captures:
+        1: keyword.control.flow.gherkin
+
+    - include: column_separator
+    - match: ':$\n?'
+      scope: punctuation.section.block.gherkin
+      push:
+        - table_header_row_line
+        - pop_at_bol
+
+    - include: expressions
+    - include: comments
+    - include: scope:text.html.markdown#fenced-code-blocks # TODO: treat as markdown if no language hint
+
+  comments:
+    - match: '#'
+      scope: punctuation.definition.comment.gherkin
+      push: inside_comment
+
+  inside_comment:
+    - meta_scope: comment.line.gherkin
+    - match: $\n?
+      pop: true
+
+  expressions:
+    - match: \bnull\b
+      scope: constant.language.null.gherkin
+    # Numbers
+    - match: (-)?\b(\d+(?:(\.)\d+)?)\b
+      scope: example-c
+      captures:
+        1: keyword.operator.arithmetic.gherkin
+        2: constant.numeric.value.gherkin
+        3: punctuation.separator.decimal.gherkin
+    # placeholders
+    - match: (<)(\w+)(>)
+      captures:
+        1: punctuation.definition.placeholder.begin.gherkin
+        2: variable.other.member.gherkin
+        3: punctuation.definition.placeholder.end.gherkin
+
+  column_separator:
+    - match: \|
+      scope: punctuation.separator.sequence.gherkin
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.gherkin
+    - match: '\\.'
+      scope: constant.character.escape.gherkin
+    - match: '"'
+      scope: punctuation.definition.string.end.gherkin
+      pop: true
+
+  table_header_row_line:
+    - include: pop_if_not_table_row
+    - match: (?=\|)
+      set:
+        - table_row_line
+        - table_header_row
+
+  table_header_row:
+    - meta_content_scope: meta.table.row.header.gherkin
+    - include: table_row
+    - match: \w+
+      scope: variable.parameter.gherkin
+
+  table_row_line:
+    - match: (?=\|)
+      push: table_row
+    - include: pop_if_not_table_row
+
+  table_row:
+    - meta_content_scope: meta.table.row.gherkin
+    - include: pop_if_not_table_row
+    - include: column_separator
+    - include: expressions
+    - match: \\n
+      scope: constant.character.escape.gherkin
+    - match: \\\\
+      scope: constant.character.escape.gherkin
+    - match: \\\|
+      scope: constant.character.escape.gherkin
+    - match: $
+      pop: true
+
+  pop_if_not_table_row:
+    - match: ^(?=[^|]+$)
+      pop: true
+
+  pop_at_bol:
+    - match: ^
+      pop: true
