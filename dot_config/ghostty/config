@@ -57,5 +57,8 @@ window-vsync=true
 quick-terminal-animation-duration=0
 #quick-terminal-autohide=true
 quick-terminal-position=bottom
+quick-terminal-screen=mouse
 # Tmux attach
 command=tmux-restore.sh
+window-decoration=server
+custom-shader-animation=always
