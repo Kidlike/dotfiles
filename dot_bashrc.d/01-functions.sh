@@ -605,16 +605,6 @@ function cms-get-auth-keystore-password() {
   kubectl -n ${namespace} get secret auth-secrets-${namespace} -o yaml | grep AUTH_KEYSTORE_PASSWORD | sed -E 's/.*: (.*)/\1/' | base64 --decode
 }
 
-function bash-history-restore() {
-  largestBackup=$(ls -1S ~/.bash_history.d/currents/* | head -1)
-  if [[ -r "$largestBackup" ]]; then
-    cat "$largestBackup" > ~/.bash_history
-    history -r
-  else
-    echo ">> Implement me: restore from ~/.bash_history.d/backups/"
-  fi
-}
-
 function git-list-tickets() {
   local from=${1:?Please specify starting git reference}
   local to=${2:?Please specify destination git reference}

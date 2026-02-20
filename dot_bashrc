@@ -50,6 +50,8 @@ export AWS_PROFILE='dev'
 # starship.rs
 eval "$(starship init bash)"
 
+# TODO carapace for completion?
+
 # atuin (for ctrl-r)
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
