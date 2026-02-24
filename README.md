@@ -3,7 +3,7 @@
 ```shell
 sudo dnf copr enable scottames/ghostty
 sudo dnf copr enable atim/starship
-sudo dnf install ghostty starship chezmoi fzf xclip bat zoxide git cargo ripgrep awscli kubernetes1.35-client glow jq yq just pdfgrep gh tldr meld tailscale parallel uv xsel htop btop
+sudo dnf install ghostty starship chezmoi fzf xclip bat zoxide git cargo ripgrep awscli kubernetes1.35-client glow jq yq just pdfgrep gh tldr meld tailscale parallel uv xsel htop btop hyperfine
 cargo install eza
 cargo install kubie
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
@@ -38,4 +38,5 @@ chezmoi init --apply Kidlike
 
 ## TODOs
 - use chezmoi to run installation scripts: https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/
+- install script for https://github.com/tsenart/vegeta
 
