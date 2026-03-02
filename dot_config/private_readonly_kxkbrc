@@ -1,0 +1,8 @@
+[Layout]
+DisplayNames=,
+LayoutList=us,gr
+Model=pc105
+Options=grp:shift_caps_toggle
+ResetOldOptions=true
+Use=true
+VariantList=,
