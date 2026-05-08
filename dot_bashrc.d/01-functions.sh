@@ -28,30 +28,9 @@ function pdfman() {
   fi
   evince /tmp/pdfman-$1.pdf
 }
-complete -F _man pdfman
+#complete -F _comp_cmd_man pdfman
 
-function killprocname() {
-  procs=`ps -ef | grep -i "$1" | grep -v grep | tr -s " " " " | cut -d\  -f 2`
-
-  oldIFS=IFS
-  IFS=\
-    countProcs=`echo $procs | wc -l`
-      IFS=$oldIFS
-
-      if [ ${countProcs} -gt 1 ]
-      then
-	echo "Not unique selection..." &> /dev/stderr
-	return
-      elif [ "$(echo $procs)X" == "X" ]
-      then
-	echo "No such process..."
-	return
-      fi
-      echo "kill: ${procs}"
-      kill -9 ${procs}
-    }
-
-  function grepkill() {
+function grepkill() {
     if [ $# -eq 1 ]; then
       killargs="-9"
       filter=$1
@@ -83,45 +62,6 @@ function git-go-up() {
     [[ "$(pwd)" == ~ || "$(pwd)" == "/" ]] && break;
     cd ..
   done
-}
-
-if command -v svn >/dev/null 2>&1; then
-  function svn-go-up() {
-    while ! ls .svn >/dev/null 2>&1; do
-      [ "$(pwd)" == ~ ] && break;
-      cd ..
-    done
-  }
-fi
-
-function cd-switch() {
-  cd $(pwd | sed "s#/$1/#/$2/#g")
-}
-
-function load-scripts() {
-  if [ -d ~/.dotfiles/scripts ]; then
-    mkdir -p ~/.local/bin 2>/dev/null
-    cd ~/.dotfiles/scripts
-    for f in $(\ls -1); do
-      linkName=$(echo $f | rev | cut -d\. -f2- | rev)
-      rm -f ~/.local/bin/$linkName 2>/dev/null
-      if [ -x $f ]; then
-	ln -sf ~/.dotfiles/scripts/$f ~/.local/bin/$linkName
-      fi
-    done
-    cd - >/dev/null 2>&1
-  fi
-}
-
-function unload-scripts() {
-  if [ -d ~/.dotfiles/scripts ]; then
-    cd ~/.dotfiles/scripts
-    for f in $(\ls -1); do
-      linkName=$(echo $f | rev | cut -d\. -f2- | rev)
-      rm -f ~/.local/bin/$linkName 2>/dev/null
-    done
-    cd - >/dev/null 2>&1
-  fi
 }
 
 if command -v homesick >/dev/null 2>&1; then
@@ -372,16 +312,6 @@ function svn-ignore-maven-target() {
   done < <(find . -type d -name 'target')
 }
 
-function kube-ns() {
-  local NS=$1
-  if [ -z "$NS" ]; then
-    local NS=$(grep -i namespace ~/.kube/config | awk "{print \$2}")
-  else
-    kubectl config set-context $(kubectl config current-context) --namespace=$NS
-  fi
-  export KUBE_NS="$NS"
-}
-
 function git-branch-prune() {
   git fetch -p
   for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do 
@@ -423,9 +353,10 @@ function git-latest-release() {
     sed -E 's/.*"([^"]+)".*/\1/'
   }
 
-function kube-logs() {
-  local search="$1"
-  kubectl logs -f $(kubectl get pods | grep "^$search" | awk '{print $1}' | head -1)
+function klogs() {
+  local name=$1
+  shift
+  kubectl logs -f -l "app=$name" "$@"
 }
 
 function math-avg() {
@@ -660,3 +591,8 @@ gh-browse() {
   local org=${1:-dnd-it}
   gh repo list $org -L 100 | column -t -s$'\t' | fzf | awk '{print $1}' | xargs -I {} gh repo view --web {}
 }
+
+cm() {
+  [ $# -eq 0 ] && chezmoi cd || chezmoi "$@";
+}
+
