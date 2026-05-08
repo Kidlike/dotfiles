@@ -46,7 +46,7 @@
 #theme=Xcode Dark hc
 font-family = "JetBrainsMono Nerd Font"
 window-decoration = false
-background-opacity = 0.90
+background-opacity = 0.85
 background=#1a1c1c
 confirm-close-surface=false
 maximize=true

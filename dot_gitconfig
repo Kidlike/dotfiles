@@ -35,16 +35,28 @@
     rebase = false
 [url "github-pts:tx-pts-dai/"]
     insteadOf = git@github.com:tx-pts-dai/
-[url "github-tamedia:DND-IT/"]
+[url "github-pts:tx-pts-dai/"]
+    insteadOf = https://github.com/tx-pts-dai/
+[url "tamedia.github.com:DND-IT/"]
     insteadOf = git@github.com:DND-IT/
+[url "tamedia.github.com:DND-IT/"]
+    insteadOf = https://github.com/DND-IT/
 [url "github-tamedia-stefanos:stefanos-kalantzis/"]
     insteadOf = git@github.com:stefanos-kalantzis/
+[url "github-tamedia-stefanos:stefanos-kalantzis/"]
+    insteadOf = https://github.com/stefanos-kalantzis/
 [url "github-tamedia-classroom:dpd-it-classroom/"]
     insteadOf = git@github.com:dpd-it-classroom/
+[url "github-tamedia-classroom:dpd-it-classroom/"]
+    insteadOf = https://github.com/dpd-it-classroom/
 [url "github-it-pts:IT-PTS/"]
     insteadOf = git@github.com:IT-PTS/
+[url "github-it-pts:IT-PTS/"]
+    insteadOf = https://github.com/IT-PTS/
 [url "github-kidlike:Kidlike/"]
     insteadOf = git@github.com:Kidlike/
+[url "github-kidlike:Kidlike/"]
+    insteadOf = https://github.com/Kidlike/
 [init]
     defaultBranch = master
 [filter "lfs"]

@@ -59,7 +59,7 @@ style = "bg:color_bg3"
 detect_env_vars= [ 'KUBECONFIG' ]
 format = '[ $symbol $context / $namespace]($style)'
 [[kubernetes.contexts]]
-context_pattern = "arn:aws:eks:[^:]+:\\d*:cluster/(?P<cluster>.*prod.*)"
+context_pattern = "arn:aws:eks:[^:]+:\\d*:cluster/(?P<cluster>.*-prod.*)"
 context_alias = "$cluster"
 style = "bold bg:color_bg3 fg:color_orange"
 [[kubernetes.contexts]]
