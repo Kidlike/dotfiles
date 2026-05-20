@@ -34,7 +34,6 @@ alias eza='eza --color=always'
 alias k='kubectl'
 alias kcx='kubie ctx'
 alias kns='kubie ns'
-alias kwatch="watch -n 1 'kubectl get pod | grep 0/1'"
 
 # changes system state
 alias update-grub='sudo grub2-mkconfig -o /boot/grub2/grub.cfg; sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg'

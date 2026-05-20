@@ -359,6 +359,11 @@ function klogs() {
   kubectl logs -f -l "app=$name" "$@"
 }
 
+function kwatch() {
+  local term=${1:-0/1}
+  watch -n 1 "kubectl get pod | grep \"$term\""
+}
+
 function math-avg() {
   local nums=${*:-$(</dev/stdin)}
   local expr=$(echo $nums | tr ' ' '+')
