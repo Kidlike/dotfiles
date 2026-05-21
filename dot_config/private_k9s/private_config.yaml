@@ -34,8 +34,8 @@ k9s:
       namespaces: []
       labels: {}
   logger:
-    tail: 100
-    buffer: 5000
+    tail: 10000
+    buffer: 50000
     sinceSeconds: -1
     textWrap: false
     disableAutoscroll: false
