@@ -364,6 +364,11 @@ function kwatch() {
   watch -n 1 "kubectl get pod | grep \"$term\""
 }
 
+function knp() {
+  # kubernetes pods per node view
+  kubectl get pods -A -o wide --sort-by=.spec.nodeName | awk 'NR==1 {print; next} {print $8, $1"/"$2}' | awk 'BEGIN {node=""} $1!=node {if(node!="") print ""; print "\n*"$1"*"; node=$1} {print "   - "$2}'
+}
+
 function math-avg() {
   local nums=${*:-$(</dev/stdin)}
   local expr=$(echo $nums | tr ' ' '+')
