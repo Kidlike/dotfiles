@@ -369,6 +369,12 @@ function knp() {
   kubectl get pods -A -o wide --sort-by=.spec.nodeName | awk 'NR==1 {print; next} {print $8, $1"/"$2}' | awk 'BEGIN {node=""} $1!=node {if(node!="") print ""; print "\n*"$1"*"; node=$1} {print "   - "$2}'
 }
 
+function kcp() {
+  local name=${1:?arg1: k8s deployment name}
+  local file=${2:?arg2: filename to fetch}
+  kubectl get pod | grep "$1" | awk '{print $1}' | while read -r p; do rm -rf "$p" || true; mkdir -p "$p"; kubectl cp "$p:$file" "$p/$file"; done
+}
+
 function math-avg() {
   local nums=${*:-$(</dev/stdin)}
   local expr=$(echo $nums | tr ' ' '+')
