@@ -18,6 +18,7 @@ alias path-commands="echo \$PATH | tr ':' '\n' | xargs -I {} sh -c \"echo ======
 alias pom2json='xml2json -t xml2json --pretty --strip_newlines --strip_namespace --strip_text -o pom.json'
 alias count-group-by-column='echo "Counting occurences of each text in the 4th column: \"... | cut -d, -f4 | sort | uniq -c | sort -nr\""'
 alias java-switch='sdk use java $(sdk list java | grep -E "(local only|installed)" | fzf | cut -d\| -f 6 | tr -d " ")'
+alias mvn-spotbugs-gui='mvn spotbugs:gui -Dsun.java2d.uiScale=2.0'
 #alias serena='uvx --from git+https://github.com/oraios/serena serena'
 alias tmux-capture-pane='tmux capture-pane -epS - > ~/tmux.out'
 alias gh-pr="gh pr view --web 2>/dev/null || gh pr create --web"
