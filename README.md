@@ -31,6 +31,7 @@ chezmoi init --apply Kidlike
 - ollama/nvidia setup:
    - sudo dnf install xorg-x11-drv-nvidia-cuda nvtop
    - curl -fsSL https://ollama.com/install.sh | sh
+- proton-pass: `curl -fsSL https://proton.me/download/pass-cli/install.sh | bash`
 
 ## TODOs
 - use chezmoi to run installation scripts: https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/
