@@ -14,9 +14,29 @@ refreshPeriod="1h"
     url = "https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh"
     refreshPeriod = "168h"
 
+{{ $vividVersion := "0.11.1" -}}
+[".local/bin/vivid"]
+    type = "archive-file"
+    url = "https://github.com/sharkdp/vivid/releases/download/v{{ $vividVersion }}/vivid-v{{ $vividVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu.tar.gz"
+    path = "vivid-v{{ $vividVersion }}-x86_64-unknown-{{ .chezmoi.os }}-gnu/vivid"
+
+# replace with tabdance
 {{ $carapaceVersion := "1.7.3" -}}
 [".local/bin/carapace"]
     type = "archive-file"
     url = "https://github.com/carapace-sh/carapace-bin/releases/download/v{{ $carapaceVersion }}/carapace-bin_{{ $carapaceVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "carapace"
+
+# replace with tabdance
+#[".fzf-bash-completion.sh"]
+#    type = "file"
+#    url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/master/bash/fzf-bash-completion.sh"
+#    refreshPeriod = "168h"
+
+# needs to be manually installed until public release
+#{{ $tabdanceVersion := "0.0.65" -}}
+#[".local/bin/tabdance"]
+#    type = "archive-file"
+#    url = "https://github.com/tab-dance/tabdance/releases/download/v{{ $tabdanceVersion }}/tabdance_{{ $tabdanceVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+#    path = "tabdance"
 

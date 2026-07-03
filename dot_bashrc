@@ -57,15 +57,28 @@ export AWS_PROFILE='dev'
 # starship.rs
 eval "$(starship init bash)"
 
-# TODO carapace for completion?
+# colors
+export LS_COLORS="$(vivid generate rose-pine-moon)"
 
 # atuin (for ctrl-r)
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash --disable-up-arrow)"
+
+# mise for auto selection of command versions (e.g. python, etc)
 eval "$(mise activate bash)"
-source <(carapace _carapace)
 
 # fzf (for ctrl-t)
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
+
+# carapace/tabdance for tab-completion
+#source <(carapace _carapace)
+source <(tabdance _tabdance)
+
+# fzf-tab-completion
+#source ~/.fzf-bash-completion.sh
+#bind -x '"\t": fzf_bash_completion'
+#export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
+## reduce flickering
+#_fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
 
