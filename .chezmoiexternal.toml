@@ -8,3 +8,9 @@ refreshPeriod="1h"
     type = "archive-file"
     url = "https://github.com/tsenart/vegeta/releases/download/v{{ $vegetaVersion }}/vegeta_{{ $vegetaVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
     path = "vegeta"
+
+[".bash-preexec.sh"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh"
+    refreshPeriod = "168h"
+
