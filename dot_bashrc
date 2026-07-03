@@ -17,6 +17,11 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+### <Bash_configs> ###
+
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
 # expand aliases on non-interactive shell
 shopt -s expand_aliases
 
@@ -32,6 +37,8 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
+
+### </Bash_configs> ###
 
 source <(kubie generate-completion)
 
