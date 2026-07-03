@@ -14,3 +14,9 @@ refreshPeriod="1h"
     url = "https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh"
     refreshPeriod = "168h"
 
+{{ $carapaceVersion := "1.7.3" -}}
+[".local/bin/carapace"]
+    type = "archive-file"
+    url = "https://github.com/carapace-sh/carapace-bin/releases/download/v{{ $carapaceVersion }}/carapace-bin_{{ $carapaceVersion }}_{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    path = "carapace"
+
