@@ -26,7 +26,7 @@ function pdfman() {
   if [ ! -r /tmp/pdfman-$1.pdf ]; then
     man -t $1 | ps2pdf - /tmp/pdfman-$1.pdf
   fi
-  evince /tmp/pdfman-$1.pdf
+  okular /tmp/pdfman-$1.pdf
 }
 #complete -F _comp_cmd_man pdfman
 

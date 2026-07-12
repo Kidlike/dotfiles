@@ -49,6 +49,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # If not running interactively, skip the rest
 [ -z "$PS1" ] && return
 
+# mise for auto selection of command versions (e.g. python, etc)
+eval "$(mise activate bash)"
+
 export EDITOR=vim
 export MAVEN_OPTS='-Xms256M -Xmx2048M'
 export GIT_HOOK_POST_CHECKOUT_MODE='clean'
@@ -60,13 +63,10 @@ eval "$(starship init bash)"
 # colors
 export LS_COLORS="$(vivid generate rose-pine-moon)"
 
-# atuin (for ctrl-r)
+# atuin for history and ctrl-r
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash --disable-up-arrow)"
-
-# mise for auto selection of command versions (e.g. python, etc)
-eval "$(mise activate bash)"
 
 # fzf (for ctrl-t)
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
@@ -80,5 +80,5 @@ source <(tabdance _tabdance)
 #bind -x '"\t": fzf_bash_completion'
 #export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
 ## reduce flickering
-#_fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
+# _fzf_bash_completion_loading_msg() { echo "${PS1@P}${READLINE_LINE}" | tail -n1; }
 
