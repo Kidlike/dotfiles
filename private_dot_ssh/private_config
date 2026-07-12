@@ -1,0 +1,47 @@
+Host rsync.net
+	HostName zh4747.rsync.net
+	User zh4747
+	ServerAliveInterval 10
+	ServerAliveCountMax 30
+	IdentityFile ~/.ssh/id_stefanos
+
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_stefanos
+
+Host github-kidlike
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_stefanos
+
+Host github-pts
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_tamedia
+
+Host tamedia.github.com
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_tamedia
+
+Host github-tamedia-stefanos
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_tamedia
+
+Host github-tamedia-classroom
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_tamedia
+
+Host github-it-pts
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_tamedia
+
+Host tardis
+    User theponds
+    HostName tardis.lan
+    IdentityFile ~/.ssh/id_stefanos
+
