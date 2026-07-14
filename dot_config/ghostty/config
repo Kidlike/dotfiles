@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 
 #theme=Raycast Dark
-#theme=Xcode Dark hc
+theme=Xcode Dark hc
 font-family = "JetBrainsMono Nerd Font"
 window-decoration = false
 background-opacity = 0.85
