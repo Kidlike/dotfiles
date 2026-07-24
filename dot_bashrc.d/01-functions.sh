@@ -366,7 +366,38 @@ function kwatch() {
 
 function knp() {
   # kubernetes pods per node view
-  kubectl get pods -A -o wide --sort-by=.spec.nodeName | awk 'NR==1 {print; next} {print $8, $1"/"$2}' | awk 'BEGIN {node=""} $1!=node {if(node!="") print ""; print "\n*"$1"*"; node=$1} {print "   - "$2}'
+  #kubectl get pods -A -o wide --sort-by=.spec.nodeName | awk 'NR==1 {print; next} {print $8, $1"/"$2}' | awk 'BEGIN {node=""} $1!=node {if(node!="") print ""; print "\n*"$1"*"; node=$1} {print "   - "$2}'
+      local nodeinfo
+      nodeinfo=$(kubectl get nodes \
+          -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.nodeInfo.architecture}{"\t"}{.status.capacity.cpu}{"\t"}{.status.capacity.memory}{"\t"}{.metadata.labels.node\.kubernetes\.io/instance-type}{"\t"}{.metadata.labels.karpenter\.sh/nodepool}{"\t"}{.metadata.labels.eks\.amazonaws\.com/nodegroup}{"\n"}{end}')
+
+      kubectl get pods -A \
+          -o custom-columns=NS:.metadata.namespace,POD:.metadata.name,NODE:.spec.nodeName \
+          --sort-by=.spec.nodeName \
+        | awk -v ni="$nodeinfo" '
+          BEGIN {
+              n = split(ni, lines, "\n")
+              for (i = 1; i <= n; i++) {
+                  if (lines[i] == "") continue
+                  split(lines[i], f, "\t")
+                  arch[f[1]] = f[2]
+                  cpu[f[1]]  = f[3]
+                  m = f[4]; sub(/Ki$/, "", m)          # memory comes as e.g. 32906104Ki
+                  mem[f[1]]  = sprintf("%.0fGi", m/1024/1024)
+                  itype[f[1]] = f[5]                    # aws instance type, e.g. m6g.large
+                  pool[f[1]]  = (f[6] != "" ? f[6] : f[7])  # karpenter nodepool or eks nodegroup
+              }
+              node = ""
+          }
+          NR==1 { next }
+          {
+              if ($3 != node) {
+                  printf "\n*%s*  [%s | %s | %s, %s vCPU, %s]\n", $3, pool[$3], itype[$3], arch[$3], cpu[$3], mem[$3]
+                  node = $3
+              }
+              print "   - " $1"/"$2
+          }
+        '
 }
 
 function kcp() {
