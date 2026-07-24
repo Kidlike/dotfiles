@@ -62,11 +62,15 @@ eval "$(starship init bash)"
 
 # colors
 export LS_COLORS="$(vivid generate rose-pine-moon)"
+#export TABDANCE_THEME=gruvbox_material_dark_hard
+#export TABDANCE_THEME=seoul256-dark-hard
+export TABDANCE_THEME=ayu_dark
 
 # atuin for history and ctrl-r
 . "$HOME/.atuin/bin/env"
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash --disable-up-arrow)"
+#eval "$(atuin init bash --disable-up-arrow)"
+eval "$(atuin init bash)"
 
 # fzf (for ctrl-t)
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
