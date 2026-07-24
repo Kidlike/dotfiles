@@ -22,6 +22,7 @@ alias mvn-spotbugs-gui='mvn spotbugs:gui -Dsun.java2d.uiScale=2.0'
 #alias serena='uvx --from git+https://github.com/oraios/serena serena'
 alias tmux-capture-pane='tmux capture-pane -epS - > ~/tmux.out'
 alias gh-pr="gh pr view --web 2>/dev/null || gh pr create --web"
+alias git-remove-last-commit='git reset --hard HEAD~1'
 
 # colors
 alias ls='ls -hF --color=auto --group-directories-first'
